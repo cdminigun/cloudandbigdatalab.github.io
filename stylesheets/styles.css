@@ -524,8 +524,9 @@ textarea {
  * Remove most spacing between table cells
  */
 table {
+  text-align: center;
   border-collapse: collapse;
-  border-spacing: 0;
+  border-spacing: 10rem;
 }
 
 body {
@@ -661,8 +662,13 @@ pre code {
 }
 
 table {
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 80%;
   border-collapse: collapse;
+  border-spacing: 0;
+  border: 0;
 }
 
 th {
@@ -677,7 +683,7 @@ th {
 td {
   text-align: left;
   padding: 5px 10px;
-  border-bottom: 1px solid #434343;
+  /*border-bottom: 1px solid #434343;*/
 }
 
 hr {
@@ -782,6 +788,12 @@ dt {
 
 section {
   max-width: 650px;
+  padding: 30px 0px 50px 0px;
+  margin: 20px 0;
+  margin-top: 70px;
+}
+section #grid{
+  max-width: 1000px;
   padding: 30px 0px 50px 0px;
   margin: 20px 0;
   margin-top: 70px;
