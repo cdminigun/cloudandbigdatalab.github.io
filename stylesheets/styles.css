@@ -146,13 +146,21 @@ textarea {
 }
 
 button, input {
+   border-style: outset;
    background: #777;
    font-size: 14px; font-weight: bold; color: #ddd;
    padding: 5px 10px;
 }
 
 button.working, input.working {
-   border: 2px solid red; background: #ddd;
+   border-style: outset;
+   /*
+   border-left-color: #dd9999; border-top-color: #dd9999;
+   border-right-color: #e00000; border-bottom-color: #e00000;
+   */
+   border-left-color: #99dd99; border-top-color: #99dd99;
+   border-right-color: #00e000; border-bottom-color: #00e000;
+   background: #ddd;
    font-size: 14px; font-weight: bold; color: #111;
    padding: 5px 10px;
 }
