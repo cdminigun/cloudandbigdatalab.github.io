@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <meta charset="utf-8">
+   <title>Cloud and BigData Lab</title>
+   <link rel="stylesheet" href="content.css">
+   <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css"/>
+</head>
+<body>
+<!-- Space the header bar just a shade from the top edge of the screen. -->
+<div style="height: 5px;">&nbsp;</div>
+
+<div class="row">
+   <div class="large-12 columns">
+      <span style="header">
+         <img src="../images/chameleon_logo.png" class="chameleon_logo"/>
+         <span class="header_phrase">Open Education and Online Training Lab</span>
+      </span>
+      <div class="right">
+         <ul class="button-group radius">
+            <li><a href="#" class="button small">Home</a></li>
+            <li><a href="#" class="button small">Training</a></li>
+            <li><a href="#" class="button small">About Us</a></li>
+            <li><a href="#" class="button small">Contact</a></li>
+         </ul>
+      </div>
+      <hr>
+   </div>
+</div>
+ 
+<div class="row">
+   <div class="large-12 columns" role="content">
+      <div class="large-5">
+         <ul class="side-nav">
+            <li>Overview</li>
+            <li class="heading" style="color: black;">ChameleonCloud Labs</li>
+            <li class="lab"><a href="ceph_1_installation.html">Installation</a></li>
+            <li class="lab"><a href="ceph_2_scaling.html">Scaling</a></li>
+            <li class="lab"><a href="ceph_3_more.html">More on Storage</a></li>
+         </ul>
+      </div>
+      <hr/>
+   </div>   
+</div>
+
+<article>
+<div class="row">
+   <div class="large-12 columns" role="content">
+      <h3><a href="#">Ceph Overview</a></h3>
+      <!-- Byline:
+      <h6>Written by <a href="#">Sam Silvestro</a> on April 28, 2015.</h6>
+      -->
+      <div class="large-6 columns">
+         <p>Ceph uniquely delivers object, block, and file storage in one unified system. Ceph is highly reliable, easy to manage, and free. The power of Ceph can transform your company’s IT infrastructure and your ability to manage vast amounts of data. Ceph delivers extraordinary scalability–thousands of clients accessing petabytes to exabytes of data. A ceph node leverages commodity hardware and intelligent daemons, and a ceph storage cluster accommodates large numbers of nodes, which communicate with each other to replicate and redistribute data dynamically.</p>
+      </div>
+      <div class="large-6 columns">
+         <img class="fancybox" src="ceph-global.jpg" title="Ceph Architecture">
+      </div>
+   </div>
+</div>
+
+<div class="row">
+   <div class="large-12 columns">
+      <br/>
+      <span>
+         <span class="darkcode">
+            &nbsp;4/28/2015&nbsp;&nbsp;13:55&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+            &nbsp;4/28/2015&nbsp;&nbsp;13:55&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;DIR&gt;&nbsp;&nbsp;&nbsp;&nbsp;..<br/>
+            &nbsp;4/27/2015&nbsp;&nbsp;16:07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,592&nbsp;&nbsp;400x240textimg.gif<br/>
+            &nbsp;4/28/2015&nbsp;&nbsp;13:46&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29,274&nbsp;&nbsp;ceph-map.jpg<br/>
+            &nbsp;4/28/2015&nbsp;&nbsp;13:48&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;174,470&nbsp;&nbsp;content.css<br/>
+            &nbsp;4/28/2015&nbsp;&nbsp;14:10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4,030&nbsp;&nbsp;index.html<br/>
+            &nbsp;4/28/2015&nbsp;&nbsp;13:54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3,470&nbsp;&nbsp;index.html.bak<br/>
+         </span>
+         <span class="caption">Caption on output</span>
+      </span>
+      <br/>
+   </div>
+</div>
+
+<div class="row">
+   <div class="large-6 columns">
+      <img src="ceph-map.jpg">
+   </div>
+   <div class="large-6 columns">
+               <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod 
+               commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est 
+               magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit
+                culpa.</p>
+               <p>Boudin aliqua adipisicing rump corned beef. Nulla corned beef sunt 
+               ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla
+                nostrud pastrami.</p>
+   </div>
+</div>
+
+<div class="row">
+   <div class="large-12 columns">
+         <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. 
+         Swine short ribs meatball irure bacon nulla pork belly cupidatat 
+         meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. 
+         Capicola short ribs minim salami nulla nostrud pastrami. Nulla corned 
+         beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim 
+         salami nulla nostrud pastrami.</p>
+         <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. 
+         Swine short ribs meatball irure bacon nulla pork belly cupidatat 
+         meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. 
+         Capicola short ribs minim salami nulla nostrud pastrami.</p>
+   </div>
+</div>
+</article>
+ 
+<footer class="row">
+   <div class="large-12 columns">
+      <hr/>
+      <div class="row">
+         <div class="large-6 columns">
+            <p>&copy;2015 Cloud and BigData Lab</p>
+         </div>
+         <div class="large-6 columns">
+            <ul class="inline-list right">
+               <li><a href="#">Home</a></li>
+               <li><a href="#">Training</a></li>
+               <li><a href="#">About Us</a></li>
+               <li><a href="#">Contact</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</footer>
+</body>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+<script type="text/javascript">
+    $(function($){
+        var addToAll = false;
+        var gallery = false;
+        var titlePosition = 'inside';
+        $(addToAll ? 'img' : 'img.fancybox').each(function(){
+            var $this = $(this);
+            var title = $this.attr('title');
+            var src = $this.attr('data-big') || $this.attr('src');
+            var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+            $this.wrap(a);
+        });
+        if (gallery)
+            $('a.fancybox').attr('rel', 'fancyboxgallery');
+        $('a.fancybox').fancybox({
+            titlePosition: titlePosition
+        });
+    });
+    $.noConflict();
+</script>
+</html>
