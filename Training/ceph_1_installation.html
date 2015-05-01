@@ -87,6 +87,27 @@
          echo &quot;{username} ALL = (root) NOPASSWD:ALL&quot; | sudo tee /etc/sudoers.d/{username}
          sudo chmod 0440 /etc/sudoers.d/{username}
       </span>
+      <br/>
+      <p>Make sure to add all node IP addresses and hostnames in <p class="fixed">/etc/hosts</p>:
+      <code>vi /etc/hosts</code>
+      Ensure to make changes in <p class="fixed">~/.ssh/config</p> file similar to those made in <p class="fixed">/etc/hosts.</p></p>
+      <br/>
+      <p><h4>SSH AUTHENTICATION</h4></p>
+      <p>Copy admin node SSH key to all other nodes, substitution the appropriate username and node addresses as necessary:</p>
+      <p><code>ssh-copy-id &lt;username&gt;@&lt;node&gt;</code></p>
+      <br/>
+      <p>Ensure &quot;requiretty&quot; is disabled on all nodes:
+      <code>sudo visudo</code>
+      Enter the command below using visudo on the line corresponding to your ceph user (in this example it is simply &quot;ceph&quot;):
+      <code>&quot; Defaults:ceph !requiretty</code></p>
+      <br/>
+      <p><h4>CREATING A CLUSTER</h4></p>
+      <p>Create a cluster by issuing the following commands:
+      <span class="codeblock">
+         mkdir ~/my-cluster
+         cd ~/my-cluster
+      </span>
+      </p>
    </div>
 </div>
 
