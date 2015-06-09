@@ -1,0 +1,89 @@
+---
+title: Chameleon Training
+
+jumbotron: The Chameleon testbed with funding from the National Science Foundation (NSF), will provide a large-scale platform to the open research community allowing them explore transformative concepts in deeply programmable cloud services, design, and core technologies. This page is the ChameleonCloud education and training site.
+
+tutorials:
+ - title: 'Getting Started'
+   video:
+   doc: getting_started.pdf
+
+ - title: 'Ansible Use Cases'
+   video:
+   doc:
+
+ - title: 'Cloud Storage'
+   video:
+   doc:
+
+ - title: 'OpenMPI'
+   video:
+   doc:
+
+ - title: 'Robot Operating System (ROS)'
+   video:
+   doc:
+
+ - title: 'Machine Learning'
+   video:
+   doc:
+
+ - title: 'OpenStack on Bare Metal'
+   video:
+   doc:
+
+ - title: 'Hadoop'
+   video:
+   doc:
+
+ - title: 'Ceph'
+   video:
+   doc:
+
+ - title: 'API'
+   video:
+   doc:
+
+ - title: 'Software Defined Networking - OpenFlow'
+   video:
+   doc: 
+---
+
+<div class="container-fluid">
+   
+   <div class="jumbotron">
+      <h1> <%=current_page.data.title%> </h1>
+      <p> <%=current_page.data.jumbotron%> </p> 
+   </div>
+
+   <div class="row">
+      <% current_page.data.tutorials.each do |tutorial| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 text-center"> 
+         <% if tutorial.doc == nil %>
+            <span class="label label-primary">Coming Soon</span>
+         <% else %>
+            <br>
+         <% end %>
+         <h4> <%= tutorial.title %> </h4>
+
+         <% if tutorial.video != nil %>
+
+         <% else %>
+            <div>
+            <%= tag :img, :src => lorem.image('288x162', :text => 'No Video') %>
+            </div>
+         <% end %>
+         
+         <br>
+
+         <% if tutorial.doc != nil %>
+            <%= link_to "PDF", "docs/" + tutorial.doc, :class => "btn btn-default" %>
+         <% else %>
+            <%= link_to "PDF", "#", :class => "btn btn-default disabled" %>
+         <% end %>
+      <br><br>
+      </div>
+      <% end %>
+   </div>
+
+</div>
