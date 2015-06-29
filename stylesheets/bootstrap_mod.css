@@ -1,16 +1,3 @@
-.navbar {
-    margin-bottom: 0;
-}
-
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-.img {
-    vertical-align: middle;
-    max-height: 180px;
-    max-width: 320px;
-    padding: 15px;
+body {
+    padding-top: 70px;
 }

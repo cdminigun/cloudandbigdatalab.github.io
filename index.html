@@ -14,8 +14,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -24,328 +23,61 @@
     <script src="/javascripts/all.js" type="text/javascript"></script>
 </head>
 
-<div class="container-fluid">
-<div class="row">
 <header>
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <p style="height: 100%;">
-                    <img style="height: 100%; padding-right: 15px;" alt="UTSA" src="images/UTSAVectorWhite.svg"
-                    >Chameleon Training</p>
-            </a>
+            <a class="navbar-brand" href="#">UTSA OCI Chameleon Training</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <!--
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Tutorials</a></li>
+                <!--
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+                -->
             </ul>
-            -->
             <ul class="nav navbar-nav navbar-right">
-            <li><a target="_blank" href="https://www.chameleoncloud.org/login/">Account</a></li>
-            <li><a target="_blank" href="https://ironic.chameleon.tacc.utexas.edu/dashboard/auth/login/">Dashboard</a></li>
+                <!--
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                -->
+                <li><a target="_blank" href="https://www.chameleoncloud.org/login/">Account</a></li>
+                <li><a target="_blank" href="https://ironic.chameleon.tacc.utexas.edu/dashboard/auth/login/"
+                >Dashboard</a></li>
             </ul>
         </div>
+    </div>
 </nav>
 
 </header>
-</div>
 
 <body class="index">
 
-<div class="row">
+<div class="container">
 <div class="jumbotron">
         <!--<a target="_blank" href="https://www.chameleoncloud.org"><img class="img-responsive" src="images/chameleon_logo.png"></a>-->
-        <h1 class ="text-center"> Open Education and Online Lab </h1>
+        <h1> Chameleon Open Education & Online Lab </h1>
         <p> The Chameleon testbed with funding from the National Science Foundation (NSF), will provide a large-scale platform to the open research community allowing them explore transformative concepts in deeply programmable cloud services, design, and core technologies. This page is the ChameleonCloud education and training site. </p>
 </div>
 </div>
 
-        <div class="row">
+<div class="container">
 
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <br>
-    <h4> Getting Started </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default" href="docs/Getting Started - Chameleon Cloud.pdf">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success" href="https://www.chameleoncloud.org/login/">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <br>
-    <h4> Docker </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default" href="docs/Docker - Chameleon Cloud.pdf">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success" href="https://github.com/cloudandbigdatalab/chameleon-docker-tutorial">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <br>
-    <h4> DevStack </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default" href="docs/DevStack - Chameleon Cloud.pdf">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <br>
-    <h4> Fundamental Security </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default" href="docs/Fundamental Security - Chameleon Cloud.pdf">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-        </div>
-        <br>
-        <div class="row">
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Chameleon Architecture </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Chameleon APIs </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Cloud Automation with Ansible </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Software Defined Networking </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-        </div>
-        <br>
-        <div class="row">
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Cloud Storage </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> OpenMPI </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Robot Operating System (ROS) </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Machine Learning </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-        </div>
-        <br>
-        <div class="row">
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> OpenStack on Bare Metal </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Hadoop </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    <div class="col-xs-12 col-sm-6 col-sm-3 text-center">
-
-        <span class="label label-info">Coming Soon</span>
-    <h4> Ceph </h4>
-
-    <span class="img-thumbnail" style="width: 100%; height: 33vh;" />
-
-        <a target="_blank" class="btn btn-default disabled" href="#">Tutorial</a>
-
-        <a target="_blank" class="btn btn-success disabled" href="#">Lab</a>
-
-    </div>
-
-
-    </div>
-    <br>
-
+<div class="row"><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Getting Started</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a target="_blank" role="button" class="btn btn-default" href="docs/Getting Started - Chameleon Cloud.pdf">Tutorial</a><a target="_blank" role="button" class="btn btn-default" href="https://www.chameleoncloud.org/login/">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Docker</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a target="_blank" role="button" class="btn btn-default" href="docs/Docker - Chameleon Cloud.pdf">Tutorial</a><a target="_blank" role="button" class="btn btn-default" href="https://github.com/cloudandbigdatalab/chameleon-docker-tutorial">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>DevStack</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a target="_blank" role="button" class="btn btn-default" href="docs/DevStack - Chameleon Cloud.pdf">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Fundamental Security</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a target="_blank" role="button" class="btn btn-default" href="docs/Fundamental Security - Chameleon Cloud.pdf">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div></div><div class="row"><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Hadoop</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a target="_blank" role="button" class="btn btn-default" href="docs/Hadoop - Chameleon Cloud.pdf">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Chameleon Architecture</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Chameleon APIs</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Cloud Automation with Ansible</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div></div><div class="row"><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Software Defined Networking</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Cloud Storage</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>OpenMPI</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Robot Operating System (ROS)</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div></div><div class="row"><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Machine Learning</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>OpenStack on Bare Metal</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Hadoop</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div><div class='col-xs-12 col-sm-6 col-md-3 text-center'><p>Ceph</p><img class="img-responsive img-thumbnail" src="http://placehold.it/1200/eee/000?text=&lt; &gt;" /><br><br><div class='btn-group' role='group'><a role="button" class="btn btn-default disabled" href="#">Tutorial</a><a role="button" class="btn btn-default disabled" href="#">Lab</a></div><br><br></div></div>
+</div>
 
 </body>
 
-<div class="row">
+<!--
 <footer>
-    <div class="jumbotron text-center" style="margin-bottom: 0;">
-
-    <div class="row">
-        <div class="col-xs-6 col-md-2">
-            <a href="https://www.ci.uchicago.edu/">
-                <img class="img-responsive center-block" style="height:50px; width: auto;" src="images/ci-logo.png" alt="The Computation Institute at the University of Chicago">
-            </a>
-            <br><br>
-        </div>
-        <div class="col-xs-6 col-md-2">
-            <a href="https://www.tacc.utexas.edu">
-                <img class="img-responsive center-block" style="height:50px; width: auto;" src="images/tacc-logo.svg" alt="Texas Advanced Computing Center">
-            </a>
-            <br><br>
-        </div>
-        <div class="col-xs-6 col-md-2">
-            <a href="http://www.icair.org/">
-                <img class="img-responsive center-block" style="height:50px; width: auto;" src="images/icair-logo.png" alt="The International Center for Advanced Internet Research at Northwestern University">
-            </a>
-            <br><br>
-        </div>
-        <div class="col-xs-6 col-md-2">
-            <a href="http://www.osu.edu/">
-                <img class="img-responsive center-block" style="height:50px; width: auto;" src="images/ohio-logo.png" alt="The International Center for Advanced Internet Research at Northwestern University">
-            </a>
-            <br><br>
-        </div>
-        <div class="col-xs-6 col-md-2">
-            <a href="http://utsa.edu/">
-                <img class="img-responsive center-block" style="height:50px; width: auto;" src="images/utsa-logo.png" alt="The University of Texas at San Antonio">
-            </a>
-            <br><br>
-        </div>
-        <div class="col-xs-6 col-md-2">
-            <a href="http://www.nsf.gov/">
-                <img class="img-responsive center-block" style="height:50px; width: auto;" src="images/nsf-logo.png" alt="The National Science Foundation">
-            </a>
-            <br><br>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <p>Chameleon Cloud is funded by a grant from the National Science Foundation.</p>
-        </div>
-    </div>
-</div>
-
-
 </footer>
-</div>
-</div>
+-->
 
 </html>
