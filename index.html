@@ -26,14 +26,14 @@ jumbotron_text: The Chameleon testbed with funding from the National Science Fou
 
             <div class="btn-group" role="group" style="margin: 10px;">
               <a
-              class="btn btn-default {% if tutorial.doc == null %}{{ disabled }}{% endif %}"
+              class="btn btn-default {% if tutorial.doc == null %}disabled{% endif %}"
               role="button"
               target="_blank"
               href="{% if tutorial.doc %}{{ tutorial.doc }}{% endif %}"
               >Tutorial</a>
 
               <a
-              class="btn btn-default {% if tutorial.lab == null %}{{ disabled }}{% endif %}"
+              class="btn btn-default {% if tutorial.lab == null %}disabled{% endif %}"
               role="button"
               target="_blank"
               href="{% if tutorial.lab %}{{ tutorial.lab }}{% endif %}"
