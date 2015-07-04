@@ -19,9 +19,9 @@ jumbotron_text: The Chameleon testbed with funding from the National Science Fou
 
     <div class="row">
       {% for tutorial in site.data.tutorials %}
-        <div id="col-{{ forloop.index }}" class='col-xs-12 col-sm-6 col-md-3 text-center' style="margin-bottom: 20px;">
+        <div id="col-{{ forloop.index0 }}" class='col-xs-12 col-sm-6 col-md-3 text-center' style="margin-bottom: 20px;">
 
-            <img id="img-{{ forloop.index }}" class="img-responsive img-thumbnail" style="padding: 10px;" src="">
+            <img id="img-{{ forloop.index0 }}" class="img-responsive img-thumbnail" style="padding: 10px;" src="">
             <br>
 
             <div class="btn-group" role="group" style="margin: 10px;">
@@ -80,11 +80,11 @@ jumbotron_text: The Chameleon testbed with funding from the National Science Fou
             shaObj.setHMACKey("abc", "TEXT");
             shaObj.update("{{ tutorial.title }}");
             var hmac = shaObj.getHMAC("HEX");
-            hashes[{{ forloop.index }}] = hmac;
+            hashes[{{ forloop.index0 }}] = hmac;
         {% endfor %}
 
         // base64 encoded PNG
-        for (i = 1; i <= hashes.length; i++) {
+        for (i = 0; i < hashes.length; i++) {
             data = new Identicon(hashes[i], Math.round(document.getElementById("col-"+i).clientWidth * .75)).toString();
             document.getElementById("img-"+i).src="data:image/png;base64," + data;
         }
