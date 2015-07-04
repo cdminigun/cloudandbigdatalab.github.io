@@ -1,0 +1,43 @@
+- title: 'Getting Started'
+  doc: 'docs/Chameleon Cloud Tutorial - Getting Started.pdf'
+  lab: https://www.chameleoncloud.org/login/
+
+- title: 'Security Fundamentals'
+  doc: 'docs/Chameleon Cloud Tutorial - Security Fundamentals.pdf'
+
+- title: 'Networking Fundamentals'
+  doc: 'docs/Chameleon Cloud Tutorial - Networking Fundamentals.pdf'
+
+- title: 'Chameleon APIs'
+  doc: 'docs/Chameleon Cloud Tutorial - APIs.pdf'
+
+- title: 'Docker Fundmamentals'
+  doc: 'docs/Chameleon Cloud Tutorial - Docker Fundamentals.pdf'
+  lab: https://github.com/cloudandbigdatalab/chameleon-docker-tutorial
+
+- title: 'DevStack Sandbox'
+  doc: 'docs/Chameleon Cloud Tutorial - DevStack Sandbox.pdf'
+
+- title: 'Hadoop Sandbox'
+  doc: 'docs/Chameleon Cloud Tutorial - Hadoop Sandbox.pdf'
+
+- title: 'Block Trace'
+  doc: 'docs/Chameleon Cloud Tutorial - Block Trace.pdf'
+
+- title: 'Chameleon Architecture'
+
+- title: 'Cloud Automation with Ansible'
+
+- title: 'Software Defined Networking'
+
+- title: 'Cloud Storage'
+
+- title: 'OpenMPI'
+
+- title: 'Robot Operating System (ROS)'
+
+- title: 'Machine Learning'
+
+- title: 'OpenStack on Bare Metal'
+
+- title: 'Ceph'
