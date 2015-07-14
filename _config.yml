@@ -1,14 +1,13 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: UTSA Open Cloud Institute Training
+title_short: UTSA OCI Training
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Tutorials, blog posts, and research papers on cloud computing.
+  Topics include: security, networking, Docker, OpenStack, and Hadoop.
+  Specific examples for NSF-funded Chameleon Cloud.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://cloudandbigdatalab.github.com" # the base hostname & protocol for your site
+github_username:  cloudandbigdatalab
 
 # Build settings
 markdown: kramdown

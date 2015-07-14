@@ -1,17 +1,30 @@
 ---
 layout: default
 
-title: Chameleon Training
+jumbotron_title: Chameleon Tutorials
 
-jumbotron_title: Chameleon Open Education & Online Lab
-
-jumbotron_text: The Chameleon testbed with funding from the National Science Foundation (NSF), will provide a large-scale platform to the open research community allowing them explore transformative concepts in deeply programmable cloud services, design, and core technologies. This page is the ChameleonCloud education and training site.
+jumbotron_text: Chameleon provides a large-scale testbed to support research, development, and education related to cloud computing. Here you'll find tutorials for common cloud computing tasks demoed on Chameleon.
 ---
 
-<div class="container">
+<div class="container text-center">
     <div class="jumbotron">
-        <h1> {{ page.jumbotron_title }} </h1>
-        <p> {{ page.jumbotron_text }} </p>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h1> {{ page.jumbotron_title }} </h1>
+          <p> {{ page.jumbotron_text }} </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboards <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.chameleoncloud.org/user/dashboard/" target="_blank">Account</a></li>
+              <li><a href="https://horizon.chameleon.tacc.utexas.edu/dashboard/" target="_blank">Horizon</a></li>
+              <li><a href="https://ironic.chameleon.tacc.utexas.edu/dashboard/" target="_blank">Ironic</a></li>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 
@@ -20,37 +33,43 @@ jumbotron_text: The Chameleon testbed with funding from the National Science Fou
     <div class="row">
       {% for tutorial in site.data.tutorials %}
         <div id="col-{{ forloop.index0 }}" class='col-xs-12 col-sm-6 col-md-3 text-center' style="margin-bottom: 20px;">
+              <img id="img-{{ forloop.index0 }}" class="img-responsive img-rounded center-block">
+              <br>
 
-            <img id="img-{{ forloop.index0 }}" class="img-responsive img-thumbnail" style="padding: 10px;" src="">
-            <br>
+              <div class="btn-group" role="group" style="margin: 10px;">
+                <a
+                class="btn btn-default {% if tutorial.doc == null %}disabled{% endif %}"
+                role="button"
+                target="_blank"
+                href="{% if tutorial.doc %}{{ tutorial.doc }}{% endif %}"
+                >Tutorial</a>
+                <a
+                class="btn btn-default {% if tutorial.video == null %}disabled{% endif %}"
+                role="button"
+                target="_blank"
+                href="{% if tutorial.video %}{{ tutorial.video }}{% endif %}"
+                >Video</a>
+                <a
+                class="btn btn-default {% if tutorial.lab == null %}disabled{% endif %}"
+                role="button"
+                target="_blank"
+                href="{% if tutorial.lab %}{{ tutorial.lab }}{% endif %}"
+                >Lab</a>
+              </div>
+              <br>
 
-            <div class="btn-group" role="group" style="margin: 10px;">
-              <a
-              class="btn btn-default {% if tutorial.doc == null %}disabled{% endif %}"
-              role="button"
-              target="_blank"
-              href="{% if tutorial.doc %}{{ tutorial.doc }}{% endif %}"
-              >Tutorial</a>
-
-              <a
-              class="btn btn-default {% if tutorial.lab == null %}disabled{% endif %}"
-              role="button"
-              target="_blank"
-              href="{% if tutorial.lab %}{{ tutorial.lab }}{% endif %}"
-              >Lab</a>
-            </div>
-            <br>
-
-            {% if tutorial.doc == null %}
-              <span class="label label-info">Coming Soon</span>
-            {% else %}
-              <span class="label label-success">Available</span>
-            {% endif %}
-            <h4>{{ tutorial.title }}</h4>
+              {% if tutorial.doc == null and tutorial.video == null  and tutorial.lab == null%}
+                <span class="label label-info">Coming Soon</span>
+              {% else %}
+                <span class="label label-success">Available</span>
+              {% endif %}
+              <h4>{{ tutorial.title }}</h4>
 
       {% cycle '</div>', '</div>', '</div>', '</div></div><div class="row">' %}
 
     {% endfor %}
+  </div>
+</div>
     </div>
 
 </div>

@@ -1,6 +1,7 @@
 - title: 'Getting Started'
   doc: 'docs/Chameleon Cloud Tutorial - Getting Started.pdf'
   lab: https://www.chameleoncloud.org/login/
+  video: https://youtu.be/_tiEK2At438
 
 - title: 'Security Fundamentals'
   doc: 'docs/Chameleon Cloud Tutorial - Security Fundamentals.pdf'
@@ -24,9 +25,10 @@
 - title: 'Block Trace'
   doc: 'docs/Chameleon Cloud Tutorial - Block Trace.pdf'
 
-- title: 'Chameleon Architecture'
+- title: Cloud Configuration Managment
+  video: https://youtu.be/lyjjU-KPsdE
 
-- title: 'Cloud Automation with Ansible'
+- title: 'Chameleon Architecture'
 
 - title: 'Software Defined Networking'
 
