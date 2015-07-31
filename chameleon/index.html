@@ -1,0 +1,112 @@
+---
+layout: default
+
+jumbotron_title: Chameleon Tutorials
+
+jumbotron_text: Chameleon provides a large-scale testbed to support research, development, and education related to cloud computing. Here you'll find tutorials for common cloud computing tasks demoed on Chameleon.
+---
+
+<div class="container text-center">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h1> {{ page.jumbotron_title }} </h1>
+          <p> {{ page.jumbotron_text }} </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboards <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.chameleoncloud.org/user/dashboard/" target="_blank">Account</a></li>
+              <li><a href="https://horizon.chameleon.tacc.utexas.edu/dashboard/index.html" target="_blank">Horizon</a></li>
+              <li><a href="https://ironic.chameleon.tacc.utexas.edu/dashboard/index.html" target="_blank">Ironic</a></li>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+      {% for tutorial in site.data.tutorials %}
+        <div id="col-{{ forloop.index0 }}" class='col-xs-12 col-sm-6 col-md-3 text-center' style="margin-bottom: 20px;">
+              <img id="img-{{ forloop.index0 }}" class="img-responsive img-rounded center-block">
+              <br>
+
+              <div class="btn-group" role="group" style="margin: 10px;">
+                <a
+                class="btn btn-default {% if tutorial.doc == null %}disabled{% endif %}"
+                role="button"
+                target="_blank"
+                href="{% if tutorial.doc %}{{ tutorial.doc }}{% endif %}"
+                >Tutorial</a>
+                <a
+                class="btn btn-default {% if tutorial.video == null %}disabled{% endif %}"
+                role="button"
+                target="_blank"
+                href="{% if tutorial.video %}{{ tutorial.video }}{% endif %}"
+                >Video</a>
+                <a
+                class="btn btn-default {% if tutorial.lab == null %}disabled{% endif %}"
+                role="button"
+                target="_blank"
+                href="{% if tutorial.lab %}{{ tutorial.lab }}{% endif %}"
+                >Lab</a>
+              </div>
+              <br>
+
+              {% if tutorial.doc == null and tutorial.video == null  and tutorial.lab == null%}
+                <span class="label label-info">Coming Soon</span>
+              {% else %}
+                <span class="label label-success">Available</span>
+              {% endif %}
+              <h4>{{ tutorial.title }}</h4>
+
+      {% cycle '</div>', '</div>', '</div>', '</div></div><div class="row">' %}
+
+    {% endfor %}
+  </div>
+</div>
+    </div>
+
+</div>
+
+<script>
+
+    setIdenticons();
+
+    var delay = (function(){
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+
+    $(window).resize(function() {
+        delay(function(){
+            setIdenticons();
+        }, 500);
+    });
+
+    function setIdenticons() {
+        hashes = [];
+        {% for tutorial in site.data.tutorials %}
+            var shaObj = new jsSHA("SHA-512", "TEXT");
+            shaObj.setHMACKey("abc", "TEXT");
+            shaObj.update("{{ tutorial.title }}");
+            var hmac = shaObj.getHMAC("HEX");
+            hashes[{{ forloop.index0 }}] = hmac;
+        {% endfor %}
+
+        // base64 encoded PNG
+        for (i = 0; i < hashes.length; i++) {
+            data = new Identicon(hashes[i], Math.round(document.getElementById("col-"+i).clientWidth * .75)).toString();
+            document.getElementById("img-"+i).src="data:image/png;base64," + data;
+        }
+    }
+
+</script>
