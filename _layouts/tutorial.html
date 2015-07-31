@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    {% include head.html %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        function onLoad() {
+            var tables = document.getElementsByTagName("table");
+            if (tables != null) {
+                for (var i = 0; i < tables.length; i++) {
+                    tables[i].className = "table";
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body onLoad="onLoad();">
+
+{% include header.html %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-8">
+
+            <ol class="breadcrumb">
+                <li><a href="/chameleon">Chameleon Tutorials</a></li>
+                <li class="active">{{ page.title }}</li>
+            </ol>
+
+            <div class="alert alert-warning" role="alert">This page is under development.</div>
+
+            <div class="jumbotron text-center"><h1>{{ page.title }}</h1></div>
+
+            {{ content }}
+
+            <br>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
