@@ -8,6 +8,20 @@ url: "https://cloudandbigdatalab.github.com"
 
 github_username:  cloudandbigdatalab
 
-markdown: kramdown
+markdown: redcarpet
+
+redcarpet:
+  extensions: ["tables"]
 
 permalink: pretty
+
+collections:
+  chameleon:
+    output: true
+    permalink: /chameleon/:path/
+
+defaults:
+  - scope:
+      type: chameleon
+    values:
+      layout: tutorial
