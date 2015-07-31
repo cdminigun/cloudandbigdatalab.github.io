@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>{% if page.title_short %}{{ page.title_short }}{% else %}{{ site.title_short }}{% endif %}</title>
+    <title>{% if page.title %}{{ site.title_short }} - {{ page.title }}{% else %}{{ site.title_full }}{% endif %}</title>
+
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
