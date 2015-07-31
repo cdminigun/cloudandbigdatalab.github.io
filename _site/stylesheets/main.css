@@ -8,3 +8,9 @@ body {
     display: -ms-flexbox;
     display: flex;
 }
+
+pre code {
+    overflow: auto;
+    overflow-wrap: normal;
+    white-space: pre;
+}
