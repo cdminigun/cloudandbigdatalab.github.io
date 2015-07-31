@@ -13,7 +13,7 @@ markdown: redcarpet
 redcarpet:
   extensions: ["tables"]
 
-permalink: pretty
+permalink: /:categories/:year/:month/:day/:title
 
 collections:
   chameleon:
