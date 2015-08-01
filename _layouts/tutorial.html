@@ -5,9 +5,6 @@
 
     {% include head.html %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
     <script>
         function onLoad() {
             var tables = document.getElementsByTagName("table");
@@ -39,7 +36,7 @@
 
             <div class="alert alert-warning" role="alert">This page is under development.</div>
 
-            <div class="jumbotron text-center"><h1>{{ page.title }}</h1></div>
+            <div class="page-header"><h1>{{ page.title }}</h1></div>
 
             {{ content }}
 
