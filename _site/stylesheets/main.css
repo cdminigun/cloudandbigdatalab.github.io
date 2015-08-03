@@ -1,16 +1,53 @@
+/*
 body {
     padding-top: 70px;
 }
+*/
 
-.row-eq-height {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+.navbar {
+    margin-bottom: 0;
 }
 
+.navbar.navbar-default.navbar-static-top a,
+.navbar.navbar-default.navbar-static-top a:hover {
+    color: #43A047;
+}
+
+/*
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #43A047;
+    background-color: #000000;
+}
+*/
+
+.jumbotron {
+    background-color: #43A047;
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #43A047;
+}
+
+.btn-outline-inverse {
+    color: #fff;
+    background-color: transparent;
+    border-color: #fff
+}
+
+.btn-outline-inverse:active, .btn-outline-inverse:focus, .btn-outline-inverse:hover {
+    color: #43A047;
+    text-shadow: none;
+    background-color: #fff;
+    border-color: #fff
+}
+
+/*
 pre code {
     overflow: auto;
     overflow-wrap: normal;
     white-space: pre;
 }
+*/
