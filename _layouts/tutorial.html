@@ -3,60 +3,39 @@
 
 <head>
 
-    {% include head.html %}
+  {% include head.html %}
 
-    <script>
-        function onLoad() {
-            var tables = document.getElementsByTagName("table");
-            if (tables != null) {
-                for (var i = 0; i < tables.length; i++) {
-                    tables[i].className = "table";
-                }
-            }
-        }
-    </script>
+  <script src="/js/temp.js"></script>
 
 </head>
 
-<body onLoad="onLoad();">
+<body>
 
-{% include header.html %}
+  {% include header.html %}
 
-<div class="container-fluid">
+  <div class="container-fluid">
 
-    <div class="row">
+    <div class="row" style="margin-bottom: 20px;"><div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 col-xl-offset-4 col-xl-4">{{ content }}</div></div>
 
-        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6
-        col-xl-offset-4 col-xl-4">
+    <!--
+    <div class="row"><div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 col-xl-offset-4 col-xl-4">
 
-            <ol class="breadcrumb">
-                <li><a href="/chameleon">Chameleon Tutorials</a></li>
-                <li class="active">{{ page.title }}</li>
-            </ol>
+      <div id="disqus_thread" style="margin-top: 20px; margin-bottom: 20px;"></div>
+      <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'cloudandbigdatalab';
 
-            <div class="alert alert-warning" role="alert">This page is under development.</div>
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-            <div class="page-header"><h1>{{ page.title }}</h1></div>
-
-            {{ content }}
-
-            <div id="disqus_thread" style="margin-top: 20px; margin-bottom: 20px;"></div>
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES * * */
-                var disqus_shortname = 'cloudandbigdatalab';
-
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-        </div>
-
-    </div>
+    </div></div>
+    -->
 
 </div>
 

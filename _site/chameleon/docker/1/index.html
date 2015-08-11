@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>UTSA Open Cloud Institute Training</title>
+
+<meta name="description" content="Tutorials, blog posts, and research papers on cloud computing. Topics include security, networking, Docker, OpenStack, and Hadoop. Specific examples for NSF-funded Chameleon Cloud.">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/identicon.js"></script>
+<script src="/js/pnglib.js"></script>
+<script src="/js/sha.js"></script>
+
+<link rel="canonical" href="https://cloudandbigdatalab.github.com/chameleon/docker/1/"/>
+
+
+  <script src="/js/temp.js"></script>
+
+</head>
+
+<body>
+
+  <header>
+
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">UTSA OCI Training</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/chameleon/">Chameleon<span class="sr-only">(current)</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!--links at end of nav bar go here-->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</header>
+
+
+  <div class="container-fluid">
+
+    <div class="row" style="margin-bottom: 20px;"><div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 col-xl-offset-4 col-xl-4"><h1 id="chameleon-cloud-tutorial">Chameleon Cloud Tutorial</h1>
+
+<p>National Science Foundation  <br />
+Program Solicitation # NSF 13-602  <br />
+CISE Research Infrastructure: Mid-Scale Infrastructure - NSFCloud (CRI: NSFCloud)</p>
+
+<h2 id="docker-1---fundamentals">Docker 1 - Fundamentals</h2>
+
+<p>In this tutorial we’re going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the “Getting Started” tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>It’s expected that you have a general knowledge of Linux command-line environments, though most of the steps can be copied exactly without modification. No previous knowledge of Docker is required and we will provide some explanation of key Docker terms and concepts below. See the official Docker <a href="https://docs.docker.com/">docs</a> for more detail and reference.</p>
+
+<h2 id="what-is-docker">What is Docker?</h2>
+
+<p>Docker is conceptually similar to virtual machines but has much less resource overheard because it doesn’t run a full guest OS. Docker containers start in seconds vs minutes, take up less space, and are less hardware demanding because they share resources with the host OS. Read in-depth <a href="https://www.docker.com/whatisdocker">here</a>.</p>
+
+<h2 id="terms--concepts">Terms &amp; Concepts</h2>
+
+<p>Most of the docker descriptions are taken directly from their <a href="https://docs.docker.com/reference/glossary/">glossary</a>.</p>
+
+<p><strong>Docker Engine or “Docker”:</strong> The docker daemon process running on the host which manages images and containers</p>
+
+<p><strong>Image:</strong> Docker images are the basis of containers. An Image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime. An image typically contains a union of layered filesystems stacked on top of each other. An image does not have state and it never changes.</p>
+
+<p><strong>Docker Hub:</strong> The Docker Hub is a centralized resource for working with Docker and its components. Like GitHub but for Docker images.</p>
+
+<p><strong>Container:</strong> A container is a runtime instance of a docker image. A Docker container consists of:</p>
+
+<ul>
+  <li>A Docker image</li>
+  <li>Execution environment</li>
+  <li>A standard set of instructions</li>
+  <li>The concept is borrowed from Shipping Containers, which define a standard to ship goods globally. Docker defines a standard to ship software.</li>
+</ul>
+
+<p><strong>Dockerfile:</strong> A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile. <a href="https://docs.docker.com/reference/builder/">Dockerfile Reference</a></p>
+
+<p><strong>Postgres:</strong> An SQL database. <a href="http://www.postgresql.org">Official Site</a></p>
+
+<p><strong>Nginx “engine x”:</strong> A web server. <a href="http://nginx.com">Official Site</a></p>
+
+<p><strong>uWGSI:</strong> An application server that connects to Nginx. In our tutorial we’re using it to run a simple Python app that generates the demo page. <a href="https://uwsgi-docs.readthedocs.org/en/latest/">Official Site</a></p>
+
+<h2 id="steps-outline">Steps Outline</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Description</th>
+      <th>Time (mins)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Spin up Chameleon resources</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Software installation</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Setup app and ambassador containers, Postgres on host 1, Nginx and uWSGI on host 2</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Test demo site to see if configuration was successful</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="chameleon-resources">1. Chameleon Resources</h2>
+
+<p>Create 2 Chameleon baremetal servers. We used a CentOS 7 image for this tutorial but feel free to use any other Distro as long it runs Docker.</p>
+
+<h2 id="software-installation">2. Software Installation</h2>
+
+<p>Install Docker on each server with <code>sudo yum install docker</code>. This installs the Docker daemon and client tools. You may also wish to install an editor such as vim and git (if not already installed, included in our CentOS image).</p>
+
+<p><strong>Important</strong>  <br />
+The Docker daemon needs to be running before you can use Docker. Start it with <code>sudo service docker start</code>. <strong>If you’re getting errors with every Docker command this may be the cause.</strong></p>
+
+<h2 id="container-setup">2. Container Setup</h2>
+
+<p>Before you move on let’s explain some things. You will be setting up one host with a Postgres (SQL database) container. The other host will be setup with Nginx (web server) and uWGSI (interface to Python script that generates actual page) containers. To connect the uWGSI container across hosts to the Postgres container we will use <em>ambassador</em> containers, one on each host.</p>
+
+<p><strong>Note</strong>  <br />
+You have two options to deploy the containers. You can pull already built containers from our <a href="https://hub.docker.com/u/cloudandbigdatalab/">Docker Hub</a> repos and run them. Or you can pull this GitHub repo and build the Docker images yourself using the Dockerfile in each directory. If you want to edit the site content you will need to build the images yourself after making your edits, although you can edit the database by simply connecting to it. The ambassador containers we’re using are maintained by a Docker employee and thus we’ll only be pulling those. You can pull an image before running it with <code>sudo docker pull image_name</code> or you can  just <code>sudo docker run --name container_name -d image_name</code> and Docker will automatically pull the image for you.</p>
+
+<p><strong>Useful Commands</strong></p>
+
+<pre><code class="language-sh"># show running containers
+sudo docker ps
+
+# show all, even stopped, containers
+sudo docker ps -a
+
+# check container's logs (stdout of container)
+# useful if there's a problem
+sudo docker logs container_name
+
+# to stop container
+sudo docker stop container_name_or_id
+
+# to remove container
+sudo docker rm container_name_or_id
+
+# to remove and stop together
+sudo docker rm -f container_name_or_id
+
+# to remove image
+sudo docker rmi image_name_or_id
+</code></pre>
+
+<h3 id="host-1">Host 1</h3>
+
+<h4 id="pulling-from-docker-hub">Pulling from Docker Hub</h4>
+<pre><code class="language-sh"># start postgres container
+# port 5432 is set to be exposed in Dockerfile
+# -d run as daemon (run in background)
+# user: cloudandbigdatalab, repo: postgres
+sudo docker run --name postgres -d cloudandbigdatalab/postgres
+
+# start ambassador container, linking to postgres
+# -p map port 5432 from within container to outside
+sudo docker run --name host2_ambassador -d --link postgres:postgres -p 5432:5432 svendowideit/ambassador
+</code></pre>
+
+<h4 id="building-from-dockerfile">Building from Dockerfile</h4>
+<pre><code class="language-sh"># clone repo
+git clone https://github.com/cloudandbigdatalab/tutorial-cham-docker-1.git
+
+# move into postgres directory
+cd postgres
+
+# build postgres image
+# -t to name
+# . is path to Dockerfile
+sudo docker build -t postgres .
+
+# from here you run the same commands as if you pulled the images
+# EXCEPT change cloudandbigdatalab/image_name to image_name
+</code></pre>
+
+<h3 id="host-2">Host 2</h3>
+
+<h4 id="pulling-from-docker-hub-1">Pulling from Docker Hub</h4>
+
+<p><strong>Note</strong>  <br />
+You will need to replace the ip in one of the following commands. If you need to restart the uwsgi container you will need to rm both the uwsgi and nginx containers then run again. The uwsgi container must be run first.</p>
+
+<pre><code class="language-sh"># start ambassador container
+# --expose port 5432 (postgres default) to linking containers
+# -e sets environment variable for postgres, shared to linked containers
+# replace host1_local_ip with local ip of your host 1 instance
+sudo docker run --name host1_ambassador -d --expose 5432 -e POSTGRES_PORT_5432_TCP=tcp://host1_local_ip:5432 svendowideit/ambassador
+
+# start uwsgi container, linking to host1_ambassador
+sudo docker run --name uwsgi -d --link host1_ambassador:postgres cloudandbigdatalab/uwsgi
+
+# start nginx container, linking to uwsgi container
+# map port 80 to outside, http default port
+sudo docker run --name nginx -d --link uwsgi:uwsgi -p 80:80 cloudandbigdatalab/nginx
+</code></pre>
+
+<h4 id="building-from-dockerfile-1">Building from Dockerfile</h4>
+<pre><code class="language-sh"># clone repo
+git clone https://github.com/cloudandbigdatalab/tutorial-cham-docker-1.git
+
+# move into uwsgi directory
+cd uwsgi
+
+# build uwsgi image
+# -t to name
+# . is path to Dockerfile
+sudo docker build -t uwsgi .
+
+# move into nginx directory
+cd ../nginx
+
+# build nginx image
+sudo docker build -t nginx .
+
+# from here you run the same commands as if you pulled the images
+# EXCEPT change cloudandbigdatalab/image_name to image_name
+</code></pre>
+
+<h2 id="test-website">Test Website</h2>
+
+<p>Visit the public ip of your host 2 instance in your browser. If it worked congratulations!</p>
+</div></div>
+
+    <!--
+    <div class="row"><div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 col-xl-offset-4 col-xl-4">
+
+      <div id="disqus_thread" style="margin-top: 20px; margin-bottom: 20px;"></div>
+      <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'cloudandbigdatalab';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+    </div></div>
+    -->
+
+</div>
+
+</body>
+
+</html>

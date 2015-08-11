@@ -6,8 +6,9 @@ title: Chameleon Tutorials
 description: Chameleon provides a large-scale testbed to support research, development, and education related to cloud computing. Here you'll find tutorials for common cloud computing tasks demoed on Chameleon.
 ---
 
+  <script src="/js/setIdenticons.js"></script>
 
-    <div class="jumbotron">
+    <div class="jumbotron" style="margin-top: -20px;">
         <div class="container-fluid text-center">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
@@ -74,40 +75,3 @@ description: Chameleon provides a large-scale testbed to support research, devel
     </div>
 
 </div>
-
-<script>
-
-    setIdenticons();
-
-    var delay = (function(){
-        var timer = 0;
-        return function(callback, ms){
-            clearTimeout (timer);
-            timer = setTimeout(callback, ms);
-        };
-    })();
-
-    $(window).resize(function() {
-        delay(function(){
-            setIdenticons();
-        }, 500);
-    });
-
-    function setIdenticons() {
-        hashes = [];
-        {% for tutorial in site.data.tutorials %}
-            var shaObj = new jsSHA("SHA-512", "TEXT");
-            shaObj.setHMACKey("abc", "TEXT");
-            shaObj.update("{{ tutorial.title }}");
-            var hmac = shaObj.getHMAC("HEX");
-            hashes[{{ forloop.index0 }}] = hmac;
-        {% endfor %}
-
-        // base64 encoded PNG
-        for (i = 0; i < hashes.length; i++) {
-            data = new Identicon(hashes[i], Math.round(document.getElementById("col-"+i).clientWidth * .75)).toString();
-            document.getElementById("img-"+i).src="data:image/png;base64," + data;
-        }
-    }
-
-</script>
