@@ -15,7 +15,7 @@ kramdown:
 
 permalink: /:categories/:year/:month/:day/:title
 
-exclude: ["_chameleon", "docker"]
+exclude: ["docker", "docs/word/"]
 
 collections:
   chameleon:
