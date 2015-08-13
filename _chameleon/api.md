@@ -24,15 +24,17 @@ In this tutorial, you will learn about the Application program Interface ,how it
 
 -   Basic knowledge on Open Stack applications.
 
+## Introduction
+
 ### What is Application Program Interface?
 
 An application program interface (API) is code that allows two software programs to communicate with each other. Typically, APIs are released for third-party development as part of a software development kit (SDK) or as an open API published on the Internet.
 
 ### What is Open API?
 
-**Open API** (often referred to as OpenAPI new technology) is a term used in the Application Programming Interface (API) process that uses sets of technologies that enable websites to interact with each other by using REST, SOAP, JAVA SCRIPT other web technologies.
+Open API (often referred to as OpenAPI new technology) is a term used in the Application Programming Interface (API) process that uses sets of technologies that enable websites to interact with each other by using REST, SOAP, JAVA SCRIPT other web technologies.
 
-### How API Works?
+### How API works?
 
 ![](/images/chameleon/api/image5.png)
 
@@ -52,7 +54,7 @@ Some of the Open Stack Services and Clients
 | Compute        | Nova   |
 | Object Storage | Swift  |
 
-Nova CLI Installation:
+## Nova CLI installation
 
 Nova which is a client for Compute service which creates and manages images , instances and flavors.
 
@@ -64,7 +66,7 @@ Uninistall Nova
 
 `pip uninstall python-novaclient`
 
-**Configuration of RC file**
+### Configuration of RC file
 
 Login to the Chameloen Account > Project > Access & Security > API Access
 
@@ -72,13 +74,13 @@ Login to the Chameloen Account > Project > Access & Security > API Access
 
 Click on the Download Open Stack RC file and save it.
 
-**Advanced Resource Leasing Reservation.**
+### Advanced resource leasing reservation.
 
 Login to the Chameloen account > Project > Reservation > Leases > Create Lease/Delete Lease.
 
 ![](/images/chameleon/api/image8.png)
 
-**Let us check how NOVA works**
+### Let us check how NOVA works
 
 -   Using Chameleon account Create an instance
 
@@ -90,7 +92,7 @@ Login to the Chameloen account > Project > Reservation > Leases > Create Lease/D
 
 Open the RC configuration file that we have saved already.
 
-`cc@shravya-gcg047-n03 ~$ Cat CH-816772-openrc.sh`
+`cat CH-816772-openrc.sh`
 
 The file looks in the below format and verify the highlighted fields.
 
@@ -129,7 +131,9 @@ if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
 
 `source CH-816772-openrc.sh`
 
-**KeyStone :** Keystone is an OpenStack project that provides Identity, Token, Catalog and Policy services for use specifically by projects in the OpenStack family. It implements Open Stack's Identity API
+## KeyStone
+
+Keystone is an OpenStack project that provides Identity, Token, Catalog and Policy services for use specifically by projects in the OpenStack family. It implements Open Stack's Identity API
 
 Prerequisites for Keystone development
 
@@ -197,9 +201,9 @@ To execute the tests just run
 
 `tox`
 
-Nova Usage
+## Nova Usage
 
-**Now Check for the NOVA USAGE**
+### Check Nova usage
 
 ```sh
 nova usage
@@ -207,69 +211,52 @@ nova usage
 Usage from 2015-05-27 to 2015-06-25:
 
 +---------+--------------+-----------+---------------+
-
 | Servers | RAM MB-Hours | CPU Hours | Disk GB-Hours |
-
 +---------+--------------+-----------+---------------+
-
 | 22 | 12716184.32 | 9031.38 | 144502.09 |
-
 **+---------+--------------+-----------+---------------+ **
 ```
 
-**Now checking for the Key Pair.**
+### Check for the Key Pair.
 
 ```sh
 nova keypair-list
 
 +---------------+-------------------------------------------------+
-
 | Name | Fingerprint |
-
 +---------------+-------------------------------------------------+
-
 | Paul Rad | 5f:3e:27:7b:df:17:fe:18:15:7c:eb:65:84:14:75:7f |
-
 | Ron_Laptop | 50:09:57:56:7f:80:53:e6:97:87:df:f0:b0:38:c9:e6 |
-
 | Sam Silvestro | fa:c8:ba:fe:0e:7e:3e:a6:b3:b2:1f:61:25:31:37:0b |
-
 **+---------------+-------------------------------------------------+ **
 ```
 
 The above command will trigger the API of Nova and display the key pairs that are associated with it.
 
-**Using API and deleting the Keypairs.**
+### Using API and deleting the keypairs
 
-**Using a Command Nova-keypair add**
+#### nova-keypair add
 
 `nova keypair-add Testkeypair > Test.pem`
 
 ![](/images/chameleon/api/image10.png)
 
-**Checking for Key list to ensure the key pair is added**
+#### Checking for key list to ensure the keypair is added
 
 ```sh
 nova keypair-list
 
 **+---------------+-------------------------------------------------+**
-
 **| Name | Fingerprint |**
-
 **+---------------+-------------------------------------------------+**
-
 **| Paul Rad | 5f:3e:27:7b:df:17:fe:18:15:7c:eb:65:84:14:75:7f |**
-
 **| Ron_Laptop | 50:09:57:56:7f:80:53:e6:97:87:df:f0:b0:38:c9:e6 |**
-
 **| Sam Silvestro | fa:c8:ba:fe:0e:7e:3e:a6:b3:b2:1f:61:25:31:37:0b |**
-
 **| Testkeypair | be:3b:25:b8:7c:74:79:65:bf:58:42:ad:41:83:8d:a7 |**
-
 **+---------------+-------------------------------------------------+**
 ```
 
-**Usng a command Nova-keypair-delete**
+#### nova-keypair-delete
 
 `nova keypair-delete "TestKeypair"`
 
@@ -277,29 +264,23 @@ This will trigger to the NOVA API and deletes a key pair associated with it
 
 ![](/images/chameleon/api/image11.png)
 
-Checking the keypair list to verify whether it is deleted correctly
+#### Checking the keypair list to verify it is deleted correctly
 
 ```sh
 nova keypair-list
 
 +---------------+-------------------------------------------------+
-
 | Name | Fingerprint |
-
 +---------------+-------------------------------------------------+
-
 | Paul Rad | 5f:3e:27:7b:df:17:fe:18:15:7c:eb:65:84:14:75:7f |
-
 | Ron_Laptop | 50:09:57:56:7f:80:53:e6:97:87:df:f0:b0:38:c9:e6 |
-
 | Sam Silvestro | fa:c8:ba:fe:0e:7e:3e:a6:b3:b2:1f:61:25:31:37:0b |
-
 +---------------+-------------------------------------------------+
 ```
 
 This can be achieved using other Cloud Source API like Swift, glance, neutron, trove, OpenStack, Cinder, etc.
 
-**References**
+## References
 
 <http://docs.openstack.org/user-guide/cli_cheat_sheet.html#block-storage-cinder>
 
