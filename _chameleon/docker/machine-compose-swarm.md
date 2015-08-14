@@ -1,7 +1,8 @@
 ---
+title: Machine, Compose, and Swarm
 ---
 
-# Docker 2 - Machine, Compose, and Swarm
+# Docker -  Machine, Compose, and Swarm
 
 **Because of incompatibilities, part of this tutorial uses Rackspace instead of Chameleon. See the [Machine](#machine) section for details.**
 

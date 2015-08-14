@@ -1,7 +1,10 @@
 ---
+title: Fundamentals
 ---
 
-# Networking 1 - Fundamentals
+{% assign image_path = "/images" | append: page.url %}
+
+# Networking - Fundamentals
 
 ## Objectives
 
@@ -29,7 +32,7 @@ The Network Topology subsection of the Network panel provides a visual overview 
 
 Starting from the homepage, [**https://ironic.chameleon.tacc.utexas.edu/dashboard/project/**](https://ironic.chameleon.tacc.utexas.edu/dashboard/project/), one may navigate to the Network section of the main menu on the left-hand side of the website. From there, navigate to **Network > Network Topology**.
 
-![](/images/chameleon/networking/1/image5.png)
+![]({{ image_path | append: "image5.png" }})
 
 By default, the *Small* Network Topology view should appear first. As displayed to the right, the *Small* Network view gives a brief, succinct view of the current state of the network. Currently, the names of each network will be displayed along with their associated subnet's CIDR. In addition to the CIDR, every device (such as an instance, router, etc.) that has an interface attached to a specific subnet.
 
@@ -39,15 +42,15 @@ As an additional note, more information about each of the networks can be provid
 
 To garner more information about attached devices, simply hover your mouse over any of the device/instance icons.
 
-![](/images/chameleon/networking/1/image6.png)
+![]({{ image_path | append: "image6.png" }})
 
 As seen above, a brief pop-out menu will appear to give details about the device. In this case, we see a detailed view of an instance. In this case, the instance name is *joseph-mpq055-n01*, with the ID provided, the instance's current status, and quick administrative links that include seeing full instance details or even terminating the instance.
 
 Now that we know the layout of the Network Topology's *Small* view, we are now going to see what the *Normal* view looks like. Simply go towards the top center of the page and toggle the **Small/Normal** button to **Normal**.
 
-![](/images/chameleon/networking/1/image7.png)
+![]({{ image_path | append: "image7.png" }})
 
-![](/images/chameleon/networking/1/image8.png)*Normal* view, you should see a screen similar to what follows. First, the similarities are the same display for the two networks present within the project including the same colors and **CIDR**\* display for subnets as well as the attached devices.
+![]({{ image_path | append: "image8.png" }})*Normal* view, you should see a screen similar to what follows. First, the similarities are the same display for the two networks present within the project including the same colors and **CIDR**\* display for subnets as well as the attached devices.
 
 However, the differences comes to the attached devices. For each attached device, the line will show the IP address that is currently associated with the interface on the device that is attached to the subnet being displayed. To begin with, this is a significant improvement in being able to quickly identify which IP address a device has from the subnet's point-of-view. Each device will also list the device name and the type of device. For example, as pictured, we can see that there is an *instance* attached to *sharednet1* as *10.12.0.26* with a name starting with *joseph-mp*.
 
@@ -63,23 +66,23 @@ Each project will have its own unique requirements for networks and server setup
 
 To create a network, one can simply click on the **Create Network** button at the top of the Network Topology page.
 
-![](/images/chameleon/networking/1/image9.png)
+![]({{ image_path | append: "image9.png" }})
 
 **NOTE: An alternative to this is to use the Networks subsection.**
 
 Once launched, a small popout dialog will be displayed that will take information about the network. The Network Name is the overall name for the network, not the subnet, and you should take care in what you name your network. In this example, the name *testnet* will be used. Additionally, you can specify the starting state of the network as either UP or DOWN should more testing or debugging be necessary before bringing up a new network within the project.
 
-![](/images/chameleon/networking/1/image10.png)
+![]({{ image_path | append: "image10.png" }})
 
 By clicking the **Next** button or the **Subnet** shortcut, you will move on to the next section of the setup. The default option is for the **Create Subnet** checkbox to be selected. If you wanted just the network, you can disable this part of the setup and continue on to completion. Here we are able to enter a subnet name, in our case, *testnet-subnet*. The **Network Address** field is used to request the CIDR range that the subnet will be associated with. It is important, to ensure proper network behavior, that the reserved address space is used appropriately in the case of IPv4. Focus on using those ranges specified for private or internal network use. In the case of *testnet-subnet*, we are selecting 192.168.1.0/24, one of the more common CIDR present. **IP Version** specifies between whether the subnet will use IPv4 or IPv6. For this tutorial's scope, we will be using IPv4. The final field, **Gateway IP**, is used to specificy what the gateway's IP address should be for this subnet. To default to the default Gateway IP, we may simply leave the field blank. There is also a **Disable Gateway** option should the network possibly only need limited or specific connectivity.
 
-![](/images/chameleon/networking/1/image11.png)
+![]({{ image_path | append: "image11.png" }})
 
 By clicking the **Next** button or the **Subnet Detail** shortcut, you will move on to the final section of the setup. The first option is **Enable DHCP**, which is the default standard for network interfaces to be dynamically assigned IP addresses. This option tends to be preferred as static IPs don't need to be configured and small network configuration changes won't require massive overhauls on an instance-by-instance basis. There is a field for **Allocation Pools** which corresponds with the range of IP addresses that DHCP will assign addresses from. This permits devices to be dynamically added and removed from subnets without issue while leaving plenty of space to use for whatever other purposes the network demands. Next is the **DNS Name Servers**. To preserve the longevity of this tutorial, the current IP addresses of the DNS Name Servers in use will be avoided and users are encouraged to view the Network Details of their default network to see where their DNS Name Servers are pointed towards. Additionally, other external DNS servers may also be used. **Host Routes** is the final field that permits users to specify exact paths for hops between devices, typically for routing issues or testing. Here, we will leave it blank.
 
-![](/images/chameleon/networking/1/image12.png)
+![]({{ image_path | append: "image12.png" }})
 
-![](/images/chameleon/networking/1/image13.png)inally, after reviews all details laid out, create the network by clicking on **Create**.
+![]({{ image_path | append: "image13.png" }})inally, after reviews all details laid out, create the network by clicking on **Create**.
 
 ## Step 3: Create Router
 
@@ -87,56 +90,56 @@ As with networks, each project will have its own demands for how a network may b
 
 To create a router, one can simply click on the **Create Router** button at the top of the Network Topology page.
 
-![](/images/chameleon/networking/1/image14.png)
+![]({{ image_path | append: "image14.png" }})
 
 **NOTE: An alternative to this is to use the Routers subsection.**
 
 Once clicked, a quick dialog will be prompted to the user asking for the Router Name as the only required setup detail. In our example, we will use the name *TestRouter*. Click on **Create Router** to continue.
 
-![](/images/chameleon/networking/1/image16.png)
+![]({{ image_path | append: "image16.png" }})
 
 Upon creation, you will see that a new device, our router, is now present on the Network Topology screen.
 
 Now, navigate to the **Routers** subsection. Here, you will see all the routers you've created so far along with brief details about them listed in the table. Find the router we created, *TestRouter*, and click the **Set Gateway** option to set the default gateway for the router.
 
-![](/images/chameleon/networking/1/image17.png)
+![]({{ image_path | append: "image17.png" }})
 
 A new dialog will appear that will ask specifics about the default gateway. In this setup, the default gateway is required to connect to an external network as the expected behavior of the router is to provide external capabilities to any of its attached network interfaces. This option is not required as many users will only need the interfaces to specify contact between specific subnets and will not need external connectivity. Use the **External Network** dropdown box to choose which external network you would like to default to. In our case, we will use the project's provided default external network, *ext-net*.
 
 Once satisfied, click on **Set Gateway**.
 
-![](/images/chameleon/networking/1/image18.png)
+![]({{ image_path | append: "image18.png" }})
 
-![](/images/chameleon/networking/1/image19.png)**Routers** screen, you will see updated information about our router including the name of the connected external network. To see more information, navigate back to the **Network Topology** view and you will see that the router is now being displayed as connected to the *ext-net* network since the router now acts as a gateway to it.
+![]({{ image_path | append: "image19.png" }})**Routers** screen, you will see updated information about our router including the name of the connected external network. To see more information, navigate back to the **Network Topology** view and you will see that the router is now being displayed as connected to the *ext-net* network since the router now acts as a gateway to it.
 
 Returning to the **Routers** subsection, click the drop-down menu on the far right for our router, *TestRouter*. Select the **Edit Router** option so that we may attempt to modify the network state of the router. As shown in the dialog, we see a screen with the same options as we did upon router creation. Use this to edit the **Router Name** or **Admin State** of the router.
 
-![](/images/chameleon/networking/1/image20.png)
+![]({{ image_path | append: "image20.png" }})
 
 Next, click on the name of the router in the table, **TestRouter**.
 
-![](/images/chameleon/networking/1/image21.png)
+![]({{ image_path | append: "image21.png" }})
 
 Alternatively, you may also use the **Network Topology** view by highlighting the router and clicking on **View Router Details**.
 
-![](/images/chameleon/networking/1/image22.png)
+![]({{ image_path | append: "image22.png" }})
 
 From the Router Details page, find and click **Add Interface**.
 
-![](/images/chameleon/networking/1/image23.png)
+![]({{ image_path | append: "image23.png" }})
 
-![](/images/chameleon/networking/1/image24.png)
+![]({{ image_path | append: "image24.png" }})
 
 For an even faster shortcut, one may click on **Add Interface** right away from the **Network Topology** view.
 
-![](/images/chameleon/networking/1/image25.png)
+![]({{ image_path | append: "image25.png" }})
 
 Here, a dialog will be presented with several fields to specify the interface. First is the subnet with which the router's network interface will be connected to. We will be using the default network and subnet provided, *sharednet1* and *sharednet1-subnet*. Choose the appropriate network in the **Subnet** field. Next, you may also assign a specific IP address using the **IP Address** field or leave it blank for it to be automatically assigned. The **Router Name** and **Router ID** fields should be automatically populated for you.
 
-![](/images/chameleon/networking/1/image26.png)
+![]({{ image_path | append: "image26.png" }})
 
 Once satisfied, confirm the creation of the interface by clicking on **Add Interface**.
 
-![](/images/chameleon/networking/1/image27.png)
+![]({{ image_path | append: "image27.png" }})
 
 With that, the interface should now be active and available for use. The interfaces should be used in order to interconnect subnets that might exist in two separate networks such that they may freely communicate by using the router as a gateway between the networks. While the routers do not demonstrate complete hardware router capabilities, their routing tools are more than enough so that the hosts on the network can cover any additional functionality that is desired.

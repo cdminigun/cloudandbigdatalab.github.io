@@ -1,5 +1,8 @@
 ---
+title: API
 ---
+
+{% assign image_path = "/images" | append: page.url %}
 
 # Application Program Interface
 
@@ -36,13 +39,13 @@ Open API (often referred to as OpenAPI new technology) is a term used in the App
 
 ### How API works?
 
-![](/images/chameleon/api/image5.png)
+![]({{ image_path | append: "image5.png" }})
 
 **API for OPEN STACK**
 
 A set of language bindings that provide a language-level API for accessing OpenStack in a manner consistent with language standards.
 
-![](/images/chameleon/api/image6.png)
+![]({{ image_path | append: "image6.png" }})
 
 Each OpenStack project provides a command-line client, which enables you to access the project API through easy-to-use commands
 
@@ -70,7 +73,7 @@ Uninistall Nova
 
 Login to the Chameloen Account > Project > Access & Security > API Access
 
-![](/images/chameleon/api/image7.png)
+![]({{ image_path | append: "image7.png" }})
 
 Click on the Download Open Stack RC file and save it.
 
@@ -78,13 +81,13 @@ Click on the Download Open Stack RC file and save it.
 
 Login to the Chameloen account > Project > Reservation > Leases > Create Lease/Delete Lease.
 
-![](/images/chameleon/api/image8.png)
+![]({{ image_path | append: "image8.png" }})
 
 ### Let us check how NOVA works
 
 -   Using Chameleon account Create an instance
 
-![](/images/chameleon/api/image9.png)
+![]({{ image_path | append: "image9.png" }})
 
 -   Login to port that is associated with the IP address.
 
@@ -239,7 +242,7 @@ The above command will trigger the API of Nova and display the key pairs that ar
 
 `nova keypair-add Testkeypair > Test.pem`
 
-![](/images/chameleon/api/image10.png)
+![]({{ image_path | append: "image10.png" }})
 
 #### Checking for key list to ensure the keypair is added
 
@@ -262,7 +265,7 @@ nova keypair-list
 
 This will trigger to the NOVA API and deletes a key pair associated with it
 
-![](/images/chameleon/api/image11.png)
+![]({{ image_path | append: "image11.png" }})
 
 #### Checking the keypair list to verify it is deleted correctly
 

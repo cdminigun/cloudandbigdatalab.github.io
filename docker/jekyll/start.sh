@@ -4,4 +4,4 @@ docker run --rm \
   -e JEKYLL_ENV=development \
   -it jekyll/pages \
   /usr/local/bin/jekyll serve \
-    --watch --force_polling --drafts --trace "$@"
+    --force_polling

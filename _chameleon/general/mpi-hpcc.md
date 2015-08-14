@@ -1,5 +1,8 @@
 ---
+title: MPI and HPCC
 ---
+
+{% assign image_path = "/images" | append: page.url %}
 
 # MPI and HPCC
 
