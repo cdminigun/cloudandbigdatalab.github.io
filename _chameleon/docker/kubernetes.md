@@ -30,7 +30,7 @@ Kubernetes is a system used to control a wide number of hosts for the purpose of
 
 The setup of Kubernetes relies on a single host serving as a **Master** that will serve as the primary controller that will manage the Kubernetes installation. Any additional hosts that are to be used for application deployment are defined as a **Node** (previously described as a **Minion** in prior documentation). For the tutorial, the design will be to assign one single instance as the Master and the second as the Node.
 
-**NOTE: At the time of this writing, Kubernetes is currently in a beta state. This means that the design is constantly evolving and subject to change, possibly invalidating parts of this tutorial, though the general idea should remain the same throughout. To keep up to date with the latest on Kubernetes, please visit their current development site: [https://github.com/googlecloudplatform/kubernetes](https://github.com/googlecloudplatform/kubernetes)**
+**NOTE: At the time of this writing, Kubernetes is currently in a beta state. This means that the design is constantly evolving and subject to change, possibly invalidating parts of this tutorial, though the general idea should remain the same throughout. To keep up to date with the latest on Kubernetes, please visit their current development [site](https://github.com/googlecloudplatform/kubernetes).**
 
 For our purposes, this tutorial will begin with the installation of Kubernetes.
 
@@ -224,7 +224,8 @@ Each file is of the YAML file format which may often seem a little odd, but is s
 
 Our first file will be for the main webserver and we shall call it **dock-web.yaml**. The contents should be:
 
-**dock-web.yaml**:
+**dock-web.yaml:**
+
 ```yaml
 apiVersion: v1beta3
 kind: ReplicationController
@@ -248,14 +249,14 @@ spec:
         image: cloudandbigdatalab/nginx
         ports:
         - containerPort: 80
-
 ```
 
 By looking at the very top of the file, we can see what exactly is being declared. The most important part of a YAML file for Kubernetes is the **kind** variables which defines what exactly we are creating. In this case, we can see that we are creating a Repliction Controller. Moving along, we see labels being defined in the metadata section in addition to within the spec section. **spec** defined the majority of the contents of the actual container, in this case, pulling the nginx and uwsgi docker containers and placing them into the same pod, exposing port 80 locally. Since in the Docker tutorial these were placed on the same host, placing them on the same pod is essentially the same. **replicas** is the final variable to take note of since it tells Kubernetes how many instances of the pod to run. Given that we are merely testing, we keep the number of replicas fairly small at two.
 
 Next, we will look at the **dock-post.yaml** file, the file that is used to define our second pod containing a Postgres database.
 
-**dock-post.yaml**:
+**dock-post.yaml:**
+
 ```yaml
 apiVersion: v1beta3
 kind: ReplicationController
@@ -277,7 +278,6 @@ spec:
         image: cloudandbigdatalab/postgres
         ports:
         - containerPort: 5432
-
 ```
 
 The details of this file are virtually the same as the last since we are creating another Replication Controller to manage two instances of the pod. We are pulling the postgres image from Dockerhub and exposing 5432 locally and are now leaving them available for use.
@@ -286,7 +286,8 @@ If we were to run these two files, it would be misleading to think we are applic
 
 To do this, we will take a look at creating Services. The first Service to take a look at will be in the file **post-dock-svc.yaml**, used to define the Service overlooking the Postgres pod.
 
-**post-dock-svc.yaml**:
+**post-dock-svc.yaml:**
+
 ```yaml
 apiVersion: v1beta3
 kind: Service
@@ -300,14 +301,14 @@ spec:
     targetPort: 5432
 selector:
   name: docker-post
-
 ```
 
 Since the Postgres database is fairly simple in that it only need to connect internally to other hosts within the cluster, we can rather easily see what is being done. First, the **kind** has now been changed to Service, though the labels still remain. The **spec** section now contains **port** and **targetPort**. The reason for having two port variables is that **targetPort** defines which port on the pod it should look for in terms of making a connection while **port** defines the port Service will expose and route the traffic through. This permits users to have multiple pods locally expose the same port (e.g. 80), but then have each of them being served on different ports within the cluster to differentiate between them. Just as important is the **selector** structure defined. This tells the Service what it should be targeting. By providing the name of the label defined in the Replication Controller in **dock-post.yaml**, the Service knows where to direct traffic.
 
 Finally, the more complex service file is **web-dock-svc.yaml**. The complexity exists solely because of the desire to expose out of the cluster and through the Node.
 
-**web-dock-svc.yaml**:
+**web-dock-svc.yaml:**
+
 ```yaml
 apiVersion: v1beta3
 kind: Service
