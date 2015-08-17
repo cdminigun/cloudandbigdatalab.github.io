@@ -4,8 +4,6 @@ title: MPI and HPCC
 
 {% assign image_path = "/images" | append: page.url %}
 
-# MPI and HPCC
-
 ## Objectives
 
 In this tutorial, you will learn about Open MPI and HPCC on Chameleon machines.

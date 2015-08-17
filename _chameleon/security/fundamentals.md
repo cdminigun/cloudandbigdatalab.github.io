@@ -1,10 +1,8 @@
 ---
-title: Fundamentals
+title: Security - Fundamentals
 ---
 
 {% assign image_path = "/images" | append: page.url %}
-
-# Security - Fundamentals
 
 ## Objectives
 

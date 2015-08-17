@@ -13,12 +13,42 @@
 
   <div class="container-fluid">
 
-    {% include chameleon_contents.html %}
-
     <div class="row">
 
-      <div class="col-xs-12" style="margin-bottom: 20px;">{{ content }}</div>
-      
+      <div class="
+      col-xs-12
+      col-sm-offset-1 col-sm-10
+      col-md-offset-2 col-md-8
+      col-lg-offset-3 col-lg-6
+      " style="margin-top: 20px; margin-bottom: 20px;">
+
+      <div class="visible-print-block">
+        <h1>Chameleon Cloud Tutorial</h1>
+        <p>National Science Foundation</p>
+        <p>Program Solicitation # NSF 13-602</p>
+        <p>CISE Research Infrastructure: Mid-Scale Infrastructure - NSFCloud (CRI: NSFCloud)</p>
+
+      </div>
+
+      <div class="hidden-print">
+      <ol class="breadcrumb">
+        <li><a href="/chameleon">Chameleon</a></li>
+        <li class="active">{{ page.title }}</li>
+      </ol>
+
+      <a class="btn btn-default {% if page.lab == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.lab }}"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Lab</a>
+
+      <a class="btn btn-default {% if page.video == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.video }}"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Video</a>
+
+      <a class="btn btn-default" role="button" target="_blank" href="/pdf/chameleon/{{ page.title }}.pdf" download><span class="glyphicon glyphicon-file" aria-hidden="true"></span> PDF</a>
+    </div>
+
+      <h1>{{ page.title }}</h1>
+
+      {{ content }}
+
+    </div>
+
     </div>
 
     <!--

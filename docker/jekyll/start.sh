@@ -4,4 +4,4 @@ docker run --rm \
   -e JEKYLL_ENV=development \
   -it jekyll/pages \
   /usr/local/bin/jekyll serve \
-    --force_polling
+  --watch

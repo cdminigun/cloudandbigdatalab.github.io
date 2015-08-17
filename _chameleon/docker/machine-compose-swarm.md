@@ -1,8 +1,7 @@
 ---
-title: Machine, Compose, and Swarm
+title: Docker - Machine, Compose, and Swarm
+lab: https://github.com/cloudandbigdatalab/tutorial-cham-docker-2
 ---
-
-# Docker -  Machine, Compose, and Swarm
 
 **Because of incompatibilities, part of this tutorial uses Rackspace instead of Chameleon. See the [Machine](#machine) section for details.**
 

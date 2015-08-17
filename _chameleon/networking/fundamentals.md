@@ -1,10 +1,8 @@
 ---
-title: Fundamentals
+title: Networking - Fundamentals
 ---
 
 {% assign image_path = "/images" | append: page.url %}
-
-# Networking - Fundamentals
 
 ## Objectives
 

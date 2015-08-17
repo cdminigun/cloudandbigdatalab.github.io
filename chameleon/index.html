@@ -36,38 +36,13 @@ description: Chameleon provides a large-scale testbed to support research, devel
   <div class="container">
 
     <div class="row">
-      {% for tutorial in site.data.tutorials %}
+      {% for tutorial in site.chameleon %}
       <div id="col-{{ forloop.index0 }}" class='col-xs-12 col-sm-6 col-md-3 text-center' style="margin-bottom: 20px;">
+
+        <a href="{{ tutorial.url }}">
         <img id="img-{{ forloop.index0 }}" class="img-responsive img-rounded center-block">
-        <br>
+      </a>
 
-        <div class="btn-group" role="group" style="margin: 10px;">
-          <a
-          class="btn btn-default {% if tutorial.doc == null %}disabled{% endif %}"
-          role="button"
-          target="_blank"
-          href="{% if tutorial.doc %}{{ tutorial.doc }}{% endif %}"
-          >Tutorial</a>
-          <a
-          class="btn btn-default {% if tutorial.video == null %}disabled{% endif %}"
-          role="button"
-          target="_blank"
-          href="{% if tutorial.video %}{{ tutorial.video }}{% endif %}"
-          >Video</a>
-          <a
-          class="btn btn-default {% if tutorial.lab == null %}disabled{% endif %}"
-          role="button"
-          target="_blank"
-          href="{% if tutorial.lab %}{{ tutorial.lab }}{% endif %}"
-          >Lab</a>
-        </div>
-        <br>
-
-        {% if tutorial.doc == null and tutorial.video == null  and tutorial.lab == null%}
-        <span class="label label-info">Coming Soon</span>
-        {% else %}
-        <span class="label label-success">Available</span>
-        {% endif %}
         <h4>{{ tutorial.title }}</h4>
 
         {% cycle '</div>', '</div>', '</div>', '</div></div><div class="row">' %}

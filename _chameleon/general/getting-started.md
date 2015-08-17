@@ -1,10 +1,10 @@
 ---
 title: Getting Started
+lab: https://www.chameleoncloud.org/login/
+video: https://youtu.be/_tiEK2At438
 ---
 
 {% assign image_path = "/images" | append: page.url %}
-
-# Getting Started
 
 ## Objectives
 

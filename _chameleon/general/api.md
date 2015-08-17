@@ -4,8 +4,6 @@ title: API
 
 {% assign image_path = "/images" | append: page.url %}
 
-# Application Program Interface
-
 ## Objectives
 
 In this tutorial, you will learn about the Application program Interface ,how it works with open stack.
