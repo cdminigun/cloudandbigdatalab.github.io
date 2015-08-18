@@ -33,6 +33,7 @@
       <div class="hidden-print">
       <ol class="breadcrumb">
         <li><a href="/chameleon">Chameleon</a></li>
+        <li>{{ page.category }}</li>
         <li class="active">{{ page.title }}</li>
       </ol>
 
@@ -40,10 +41,10 @@
 
       <a class="btn btn-default {% if page.video == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.video }}"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Video</a>
 
-      <a class="btn btn-default" role="button" target="_blank" href="/pdf/chameleon/{{ page.title }}.pdf" download><span class="glyphicon glyphicon-file" aria-hidden="true"></span> PDF</a>
+      <a class="btn btn-default" role="button" target="_blank" href="/pdf/chameleon/Chameleon - {{ page.category }} - {{ page.title }}.pdf" download><span class="glyphicon glyphicon-file" aria-hidden="true"></span> PDF</a>
     </div>
 
-      <h1>{{ page.title }}</h1>
+      <h1>{{ page.category }} - {{ page.title }}</h1>
 
       {{ content }}
 

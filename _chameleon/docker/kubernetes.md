@@ -1,5 +1,6 @@
 ---
-title: Docker - Kubernetes Intro
+category: Docker
+title: Kubernetes Intro
 ---
 
 {% assign image_path = "/images" | append: page.url %}

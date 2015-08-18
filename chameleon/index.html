@@ -36,7 +36,35 @@ description: Chameleon provides a large-scale testbed to support research, devel
   <div class="container">
 
     <div class="row">
-      {% for tutorial in site.chameleon %}
+
+      {% assign pages = site.chameleon | sort: 'title' %}
+      {% assign pages = pages | sort: 'category' %}
+
+      {% for page in pages %}
+
+      {% if lastPage.category != page.category %}
+        {% if forloop.first == false %}</div></div>{% endif %}
+        <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+        <img class="img-rounded identicon" data-name="{{ page.category }}">
+        <h3>{{ page.category }}</h3>
+        <div style="height: 13em;">
+      {% endif %}
+
+      {% if page.link %}
+      {% assign link = page.link %}
+      {% else %}
+      {% assign link = page.url %}
+      {% endif %}
+
+      <a href="{{ link }}"><h5>{{ page.title }}</h5></a>
+
+      {% assign lastPage = page %}
+
+      {% if forloop.last %}</div>{% endif %}
+
+      {% endfor %}
+
+      <!--
       <div id="col-{{ forloop.index0 }}" class='col-xs-12 col-sm-6 col-md-3 text-center' style="margin-bottom: 20px;">
 
         <a href="{{ tutorial.url }}">
@@ -45,9 +73,9 @@ description: Chameleon provides a large-scale testbed to support research, devel
 
         <h4>{{ tutorial.title }}</h4>
 
-        {% cycle '</div>', '</div>', '</div>', '</div></div><div class="row">' %}
+        {% cycle '</div>', '</div>', '</div>', '</div></div><div class="row">' %}-->
 
-          {% endfor %}
+
         </div>
       </div>
     </div>

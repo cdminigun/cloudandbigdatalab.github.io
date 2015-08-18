@@ -1,8 +1,14 @@
 - title: General
+  link: /general/
   docs:
-    - getting-started
-    - api
-    - mpi-hpcc
+    - title: Getting Started
+      link: getting-started
+
+    - title: API
+      link: api
+
+    - title: MPI and HPCC
+      link: mpi-hpcc
 
 - title: Docker
   docs:
@@ -11,8 +17,11 @@
 
 - title: Networking
   docs:
-    - fundamentals
+    - title: Fundamentals
+      link: fundamentals
 
 - title: Security
+  link: /security/
   docs:
-    - fundamentals
+    - title: Fundamentals
+      link: fundamentals

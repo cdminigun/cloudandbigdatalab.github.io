@@ -1,5 +1,6 @@
 ---
-title: Hadoop - Map Reduce (Python)
+category: Hadoop
+title: Map Reduce (Python)
 ---
 
 {% assign image_path = "/images" | append: page.url %}

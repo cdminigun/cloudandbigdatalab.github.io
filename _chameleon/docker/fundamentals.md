@@ -1,5 +1,6 @@
 ---
-title: Docker - Fundamentals
+category: Docker
+title: Fundamentals
 lab: https://github.com/cloudandbigdatalab/tutorial-cham-docker-1
 ---
 

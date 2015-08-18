@@ -1,20 +1,18 @@
----
----
-
+// base64 encoded PNG
 function setIdenticons() {
-    hashes = [];
-    {% for tutorial in site.data.tutorials %}
+    var identicons = document.getElementsByClassName("identicon");
+
+    for (var i = 0; i < identicons.length; i++) {
+        var identicon = identicons[i];
+        var name = identicon.getAttribute("data-name");
+
         var shaObj = new jsSHA("SHA-512", "TEXT");
         shaObj.setHMACKey("abc", "TEXT");
-        shaObj.update("{{ tutorial.title }}");
+        shaObj.update(name);
         var hmac = shaObj.getHMAC("HEX");
-        hashes[{{ forloop.index0 }}] = hmac;
-    {% endfor %}
+        var data = new Identicon(hmac, 300).toString();
 
-    // base64 encoded PNG
-    for (i = 0; i < hashes.length; i++) {
-        data = new Identicon(hashes[i], 300).toString();
-        document.getElementById("img-"+i).src="data:image/png;base64," + data;
+        identicon.src="data:image/png;base64," + data;
     }
 }
 

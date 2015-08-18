@@ -1,5 +1,6 @@
 ---
-title: Docker - Machine, Compose, and Swarm
+category: Docker
+title: Machine, Compose, and Swarm
 lab: https://github.com/cloudandbigdatalab/tutorial-cham-docker-2
 ---
 
