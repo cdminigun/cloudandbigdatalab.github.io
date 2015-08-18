@@ -3,60 +3,74 @@
 
 <head>
 
-    {% include head.html %}
-
-    <script>
-        function onLoad() {
-            var tables = document.getElementsByTagName("table");
-            if (tables != null) {
-                for (var i = 0; i < tables.length; i++) {
-                    tables[i].className = "table";
-                }
-            }
-        }
-    </script>
+  {% include head.html %}
 
 </head>
 
-<body onLoad="onLoad();">
+<body>
 
-{% include header.html %}
+  {% include header.html %}
 
-<div class="container-fluid">
+  <div class="container-fluid">
 
     <div class="row">
 
-        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6
-        col-xl-offset-4 col-xl-4">
+      <div class="
+      col-xs-12
+      col-sm-offset-1 col-sm-10
+      col-md-offset-2 col-md-8
+      col-lg-offset-3 col-lg-6
+      " style="margin-top: 20px; margin-bottom: 20px;">
 
-            <ol class="breadcrumb">
-                <li><a href="/chameleon">Chameleon Tutorials</a></li>
-                <li class="active">{{ page.title }}</li>
-            </ol>
+      <div class="visible-print-block">
+        <h1>Chameleon Cloud Tutorial</h1>
+        <p>National Science Foundation</p>
+        <p>Program Solicitation # NSF 13-602</p>
+        <p>CISE Research Infrastructure: Mid-Scale Infrastructure - NSFCloud (CRI: NSFCloud)</p>
 
-            <div class="alert alert-warning" role="alert">This page is under development.</div>
+      </div>
 
-            <div class="page-header"><h1>{{ page.title }}</h1></div>
+      <div class="hidden-print">
+      <ol class="breadcrumb">
+        <li><a href="/chameleon">Chameleon</a></li>
+        <li>{{ page.category }}</li>
+        <li class="active">{{ page.title }}</li>
+      </ol>
 
-            {{ content }}
+      <a class="btn btn-default {% if page.lab == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.lab }}"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Lab</a>
 
-            <div id="disqus_thread" style="margin-top: 20px; margin-bottom: 20px;"></div>
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES * * */
-                var disqus_shortname = 'cloudandbigdatalab';
+      <a class="btn btn-default {% if page.video == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.video }}"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Video</a>
 
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      <a class="btn btn-default" role="button" target="_blank" href="/pdf/chameleon/Chameleon - {{ page.category }} - {{ page.title }}.pdf" download><span class="glyphicon glyphicon-file" aria-hidden="true"></span> PDF</a>
+    </div>
 
-        </div>
+      <h1>{{ page.category }} - {{ page.title }}</h1>
+
+      {{ content }}
 
     </div>
+
+    </div>
+
+    <!--
+    <div class="row"><div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 col-xl-offset-4 col-xl-4">
+
+    <div id="disqus_thread" style="margin-top: 20px; margin-bottom: 20px;"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'cloudandbigdatalab';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div></div>
+-->
 
 </div>
 

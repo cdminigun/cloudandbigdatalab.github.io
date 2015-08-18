@@ -1,0 +1,12 @@
+table {
+  @extend .table;
+}
+
+img {
+  @extend .img-responsive;
+  @extend .center-block;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}

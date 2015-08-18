@@ -1,29 +1,16 @@
 <meta charset="utf-8">
 
-<!-- Always force latest IE rendering engine or request Chrome Frame -->
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Use title if it's in the page YAML frontmatter -->
-<title>{% if page.title %}{{ site.title_short }} - {{ page.title }}{% else %}{{ site.title_full }}{% endif %}</title>
+<title>{% if page.title %}{{ site.title_short }} - {{ page.category }} - {{ page.title }}{% else %}{{ site.title_full }}{% endif %}</title>
 
 <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/main.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-<script src="/javascript/identicon.js"></script>
-<script src="/javascript/pnglib.js"></script>
-<script src="/javascript/sha.js"></script>
-
-<link rel="stylesheet" href="/stylesheets/main.css"/>
+<script src="/javascripts/jquery-1.11.3.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
 
 <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
-
-

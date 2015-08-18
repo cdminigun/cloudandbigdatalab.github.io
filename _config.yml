@@ -8,12 +8,14 @@ url: "https://cloudandbigdatalab.github.com"
 
 github_username:  cloudandbigdatalab
 
-markdown: redcarpet
+markdown: kramdown
 
-redcarpet:
-  extensions: ["tables"]
+kramdown:
+  input: GFM
 
 permalink: /:categories/:year/:month/:day/:title
+
+exclude: ["docker", "src"]
 
 collections:
   chameleon:
