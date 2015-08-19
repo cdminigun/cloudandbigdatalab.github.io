@@ -1,5 +1,5 @@
 ---
 category: Cloud
-title: Cloud Configuration Management
+title: Configuration Management
 link: https://youtu.be/lyjjU-KPsdE
 ---
