@@ -1,5 +1,5 @@
 ---
-category: General
+category: Cloud
 title: Getting Started
 lab: https://www.chameleoncloud.org/login/
 video: https://youtu.be/_tiEK2At438

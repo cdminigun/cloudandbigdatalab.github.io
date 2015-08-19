@@ -1,5 +1,5 @@
 ---
-category: General
+category: Cloud
 title: API
 ---
 
