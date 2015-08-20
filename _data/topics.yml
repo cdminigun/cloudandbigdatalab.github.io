@@ -1,0 +1,11 @@
+- title: Chameleon Cloud
+  description: A configurable experimental environment for large-scale cloud research. Funded by a grant from the National Science Foundation
+
+- title: Docker
+  description: Allows you to package an application with all of its dependencies into a standardized unit for software development.
+
+- title: Kubernetes
+  description: A powerful system, developed by Google, for managing containerized applications in a clustered environment.
+
+- title: Hadoop
+  description: A free, Java-based programming framework that supports the processing of large data sets in a distributed computing environment.
