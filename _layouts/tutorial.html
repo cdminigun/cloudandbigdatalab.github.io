@@ -23,7 +23,7 @@
       " style="margin-top: 20px; margin-bottom: 20px;">
 
       <div class="visible-print-block">
-        <img src="/images/nsf.jpg"></img>
+        <img src="{{ site.baseurl }}/images/nsf.png" style="width: 100px; height: 100px;"></img>
         <h1>Chameleon Cloud Tutorial</h1>
         <p>National Science Foundation</p>
         <p>Program Solicitation # NSF 13-602</p>
@@ -38,11 +38,16 @@
         <li class="active">{{ page.title }}</li>
       </ol>
 
+      {% assign path = page.url |split:"/" %}
+      {% assign category = path[2] %}
+      {% assign file = path[3] %}
+      {% assign pdf = "/pdf/chameleon-" |append: category |append:"-" |append: file |append:".pdf" %}
+
       <a class="btn btn-default {% if page.lab == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.lab }}"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Lab</a>
 
       <a class="btn btn-default {% if page.video == null %}disabled{% endif %}" role="button" target="_blank" href="{{ page.video }}"><span class="glyphicon glyphicon-film" aria-hidden="true"></span> Video</a>
 
-      <a class="btn btn-default" role="button" target="_blank" href="/pdf/chameleon/Chameleon - {{ page.category }} - {{ page.title }}.pdf" download><span class="glyphicon glyphicon-file" aria-hidden="true"></span> PDF</a>
+      <a class="btn btn-default" role="button" target="_blank" href="{{ pdf }}" download><span class="glyphicon glyphicon-file" aria-hidden="true"></span> PDF</a>
     </div>
 
       <h1>{{ page.category }} - {{ page.title }}</h1>

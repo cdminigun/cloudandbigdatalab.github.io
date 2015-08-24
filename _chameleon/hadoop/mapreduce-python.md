@@ -3,7 +3,7 @@ category: Hadoop
 title: Map Reduce (Python)
 ---
 
-{% assign image_path = "/images" | append: page.url %}
+{% assign image_path = site.baseurl | append: "/images" | append: page.url %}
 
 In this tutorial, we will discuss about the Map and Reduce program, its implementation.
 

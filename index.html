@@ -1,8 +1,6 @@
 ---
 layout: default
 
-title: UTSA<br>Open Cloud Institute<br>Training
-
 description: Tutorials, blog posts, and papers on common cloud computing software, tasks, and concepts. Currently focused on Chameleon Cloud use cases.
 
 nav: false
@@ -13,7 +11,7 @@ nav: false
 
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
-        <h1> {{ page.title }} </h1>
+        <h1>UTSA<br>Open Cloud Institute<br>Training</h1>
         <p> {{ page.description }} </p>
       </div>
     </div>
@@ -24,10 +22,12 @@ nav: false
   <div class="container-fluid text-center">
     <div class="row" style="padding-left: 40px; padding-right: 40px">
       {% for topic in site.data.topics %}
-      <div class="col-xs-12 col-sm-6 col-md-3" style="height: 10em;">
-        <h2>{{ topic.title }}</h2>
-        <p>{{ topic.description }}</p>
-      </div>
+      <a href="/chameleon/">
+        <div class="col-xs-12 col-sm-6 col-md-3" style="height: 10em;">
+          <h2>{{ topic.title }}</h2>
+          <p>{{ topic.description }}</p>
+        </div>
+      </a>
       {% endfor %}
     </div>
   </div>

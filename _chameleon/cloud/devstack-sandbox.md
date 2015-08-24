@@ -3,7 +3,7 @@ category: Cloud
 title: DevStack Sandbox
 ---
 
-{% assign image_path = "/images" | append: page.url %}
+{% assign image_path = site.baseurl | append: "/images" | append: page.url %}
 
 ## Objectives
 

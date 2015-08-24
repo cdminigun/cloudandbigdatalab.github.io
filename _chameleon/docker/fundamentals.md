@@ -4,6 +4,8 @@ title: Fundamentals
 lab: https://github.com/cloudandbigdatalab/tutorial-cham-docker-1
 ---
 
+{% assign image_path = site.baseurl | append: "/images" | append: page.url %}
+
 In this tutorial we're going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the "Getting Started" tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts.
 
 ## Prerequisites
