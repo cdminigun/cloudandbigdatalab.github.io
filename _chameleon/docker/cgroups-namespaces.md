@@ -23,7 +23,7 @@ Like many other Linux features, namespaces establish themselves using a virtual 
 
 This usage of namespaces plays hand-in-hand with cgroups and their many uses.
 
-## Cgroups
+## CGroups
 
 When speaking about cgroups, the first idea that should come to mind is of resource management. Because where cgroups excels is in an area similar to namespaces, by separating and grouping processes into whatever organizations the user prefers and inflicting global (group-wide) rules upon them. Cgroups provide a kernel-level tool for resource management and accounting that is greatly relied upon by Docker and many other modern tools. Beginning with the organization, processes are organized into cgroups based first and foremost off of inheritance. That is, child processes will inerhit their initial group based off the parent group they belong to.
 
