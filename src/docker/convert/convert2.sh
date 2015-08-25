@@ -4,5 +4,5 @@ do
   newFile="/pwd/pdf/chameleon-"$(echo $file | perl -e '@path = split /\//, <>; print $path[@path - 3] . "-" . $path[@path - 2] . ".pdf"')
   echo $file
   echo $newFile
-  docker run --rm -it -v $(pwd):/pwd/ openlabs/docker-wkhtmltopdf --print-media-type $file $newFile
+  sudo docker run --rm -it -v $(pwd):/pwd/ openlabs/docker-wkhtmltopdf --print-media-type $file $newFile
 done
