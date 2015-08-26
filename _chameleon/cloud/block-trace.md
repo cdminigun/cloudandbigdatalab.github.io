@@ -71,23 +71,31 @@ It can provide a valuable way to test multi-drive workload, because the trace oc
 
 In this step, you will –Install Block trace, if not there.
 
-`root@rack1-1:~\# apt-get install blktrace`
+```
+root@rack1-1:~\# apt-get install blktrace
+```
 
 ### Step 2: Install “seekwatcher” and get output image/movie.
 
 In this step, you will –Install seekwatcher, if not there.
 
-`root@rack1-1:~\# apt-get install seekwatcher`
+```
+root@rack1-1:~\# apt-get install seekwatcher
+```
 
 ### Step 3: Run Blocktrace and Create a file using “dd” that will do disk access
 
-`blktrace /dev/sda &`
+```
+blktrace /dev/sda &
 
-`if=/dev/zero of=abc.bin bs=1MB count=1000`
+if=/dev/zero of=abc.bin bs=1MB count=1000
+```
 
 NOTE : kill the blktrace process using process id and then run blockparse
 
-`root@rack1-1:~\# kill (pid)`
+```
+root@rack1-1:~\# kill (pid)
+```
 
 ### Step 4: Run block parse and seekwatcher to visualize block i/o pattern
 
@@ -95,8 +103,12 @@ In this step, you will –Use blkparse and seekwatcher to visualize I/O patterns
 
 Blkparse : In this step you can monitor the drive you want and also pipe the selected output in text file.
 
-`blkparse –i sda.blktrace.7 –f “%a,%S,%t\\n” | sed –n ‘/\[CD\]/ p’ > result.txt`
+```
+blkparse –i sda.blktrace.7 –f “%a,%S,%t\\n” | sed –n ‘/\[CD\]/ p’ > result.txt
+```
 
 Seekwatcher : In this step, it will give you .png format image of disk IO, Throughput, Seek Count, IOPs
 
-`seekwatcher --io-graph-marker-size=5 -t tracenew5.blktrace.8 -o new5-dd1.png --dpi 200`
+```
+seekwatcher --io-graph-marker-size=5 -t tracenew5.blktrace.8 -o new5-dd1.png --dpi 200
+```
