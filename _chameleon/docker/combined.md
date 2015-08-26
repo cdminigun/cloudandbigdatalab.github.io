@@ -1,3 +1,0 @@
-# Combined Docker Tutorial
-
-## Introduction
