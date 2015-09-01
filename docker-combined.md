@@ -549,7 +549,7 @@ For our purposes, this tutorial will begin with the installation of Kubernetes.
 
 First, we need to visit the list of instances and find the two instances we wish to use for our installation.
 
-![]( kubernetes-instances.png )
+![]( "kubernetes-instances.png" )
 
 Take note of the local area network ip addresses of each instance and decide which host will be the Master and which will be the Node. In this scenario, 10.12.0.26, will be appointed as the Master. 10.12.0.110 will be the Node.
 
