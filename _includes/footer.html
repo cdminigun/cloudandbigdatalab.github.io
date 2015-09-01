@@ -4,7 +4,7 @@
       <p>
         {% for attribution in site.data.attributions %}
         {{ attribution.text }}
-        {% if !forloop.last %}
+        {% if forloop.last != true %}
         &nbsp; &bull; &nbsp;
         {% endif %}
       {% endfor %}
