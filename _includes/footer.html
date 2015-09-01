@@ -1,10 +1,11 @@
 <footer>
   <div class="jumbotron" style="margin-bottom: 0px;">
     <div class="container-fluid text-center">
-      <div class="row" style="margin-bottom: 20px;"></div>
+      <div class="row" style="margin-bottom: 20px;">
         {% for attribution in site.data.attributions %}
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
           <h3>{{ attribution.text }}</h3>
+        </div>
         </div>
         {% endfor %}
       <div class="row">
