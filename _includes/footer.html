@@ -3,7 +3,7 @@
     <div class="container-fluid text-center">
       <p>
         {% for attribution in site.data.attributions %}
-        {{ attribution.text }}
+        <a href="{{ attribution.link }}">{{ attribution.text }}</a>
         {% if forloop.last != true %}
         &nbsp; &bull; &nbsp;
         {% endif %}
