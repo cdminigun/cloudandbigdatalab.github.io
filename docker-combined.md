@@ -1,7 +1,7 @@
 ## Introduction
 This document serves as a collection of an ongoing series of tutorials authored for Docker and services surrounding Docker on the Chameleon Cloud platform. Starting with the basics of how to get Docker installed to creating customized Docker applications that span a series of hosts, these sections are designed to serve as a starting point from which users can create their own container-based applications. Included within this series also exists topics covering Kubernetes, a solution that uses Docker containers across a wide variety of hosts to offer a resilient and reliable solution for applications. This is compared to Docker's native solution to compare and contrast the two so that users can make a knowledgeable choice about which solution is best. Finally, Docker is examined in slightly more depth to take a look at their use of some of the modern Linux kernel features to offer additional features in management and security.
 
-## CGroups and Namespaces
+## Section 1: CGroups and Namespaces
 
 ### Objectives
 
@@ -35,7 +35,7 @@ In terms of how Docker uses cgroups is that Docker will place all the containers
 
 Similar to the namespaces, cgroups manifest themselves in the virtual filesystem. Depending on your installation, they are often found at **/sys/fs/cgroup/** or **/cgroup/**. From this root directory, you can see each subsystem has its own directory within which you can create cgroups within. Aside from that, you are also capable of mounting a cgroup and assigning the subsystems desired to be nested within using the **mount** command. Cgroups subscribe to a hierarchical structure in order to create nested groups of related tasks such that related processes can be stored together. This can be extended to running all tasks related to the webserver within one cgroup, internally, creating different cgroups for the database, backend, etc.
 
-## Fundamentals
+## Section 2: Docker Fundamentals
 
 In this tutorial we're going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the "Getting Started" tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts.
 
@@ -172,14 +172,21 @@ You will need to replace the ip in one of the following commands. If you need to
 # --expose port 5432 (postgres default) to linking containers
 # -e sets environment variable for postgres, shared to linked containers
 # replace host1_local_ip with local ip of your host 1 instance
-sudo docker run --name host1_ambassador -d --expose 5432 -e POSTGRES_PORT_5432_TCP=tcp://host1_local_ip:5432 svendowideit/ambassador
+sudo docker run --name host1_ambassador -d \
+--expose 5432 \
+-e POSTGRES_PORT_5432_TCP=tcp://host1_local_ip:5432 \
+svendowideit/ambassador
 
 # start uwsgi container, linking to host1_ambassador
-sudo docker run --name uwsgi -d --link host1_ambassador:postgres cloudandbigdatalab/uwsgi
+sudo docker run --name uwsgi -d \
+--link host1_ambassador:postgres \
+cloudandbigdatalab/uwsgi
 
 # start nginx container, linking to uwsgi container
 # map port 80 to outside, http default port
-sudo docker run --name nginx -d --link uwsgi:uwsgi -p 80:80 cloudandbigdatalab/nginx
+sudo docker run --name nginx -d \
+--link uwsgi:uwsgi \
+-p 80:80 cloudandbigdatalab/nginx
 ```
 
 ##### Building from Dockerfile
@@ -209,7 +216,7 @@ sudo docker build -t nginx .
 
 Visit the public ip of your host 2 instance in your browser. If it worked congratulations!
 
-## Machine, Compose, and Swarm
+## Section 3: Machine, Compose, and Swarm
 
 **Because of incompatibilities, part of this tutorial uses Rackspace instead of Chameleon. See the [Machine](#machine) section for details.**
 
@@ -280,8 +287,8 @@ to build and use a local image. We're assuming the Dockerfile for server is in t
 Container Name | Apps | Description
 ----------|------|------------
 server | Nginx | handles http requests
-page | uWSGI and Django | uWSGI connects Nginx to Django, Django makes page
-db | Postgres | database for page, Django connects to Postgres
+page | uWSGI and Django | page generation
+db | Postgres | database
 
 #### Run the Composition
 
@@ -308,7 +315,7 @@ The output should look similar to this.
 
 ```sh
 Name                     Command               State              Ports
-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 tutorial_db_1       /docker-entrypoint.sh postgres   Up      5432/tcp
 tutorial_page_1     ./startup.sh                     Up      3031/tcp
 tutorial_server_1   nginx -g daemon off;             Up      443/tcp, 0.0.0.0:80->80/tcp
@@ -427,17 +434,20 @@ Nodes: 3
   └ Containers: 2
   └ Reserved CPUs: 0 / 1
   └ Reserved Memory: 0 B / 1.014 GiB
-  └ Labels: executiondriver=native-0.2, kernelversion=3.13.0-37-generic, operatingsystem=Ubuntu 14.04.1 LTS, provider=rackspace, storagedriver=aufs
+  └ Labels: executiondriver=native-0.2, kernelversion=3.13.0-37-generic,
+  operatingsystem=Ubuntu 14.04.1 LTS, provider=rackspace, storagedriver=aufs
  swarm-node-0: 104.130.134.175:2376
   └ Containers: 1
   └ Reserved CPUs: 0 / 1
   └ Reserved Memory: 0 B / 1.014 GiB
-  └ Labels: executiondriver=native-0.2, kernelversion=3.13.0-37-generic, operatingsystem=Ubuntu 14.04.1 LTS, provider=rackspace, storagedriver=aufs
+  └ Labels: executiondriver=native-0.2, kernelversion=3.13.0-37-generic,
+  operatingsystem=Ubuntu 14.04.1 LTS, provider=rackspace, storagedriver=aufs
  swarm-node-1: 104.130.134.76:2376
   └ Containers: 1
   └ Reserved CPUs: 0 / 1
   └ Reserved Memory: 0 B / 1.014 GiB
-  └ Labels: executiondriver=native-0.2, kernelversion=3.13.0-37-generic, operatingsystem=Ubuntu 14.04.1 LTS, provider=rackspace, storagedriver=aufs
+  └ Labels: executiondriver=native-0.2, kernelversion=3.13.0-37-generic,
+  operatingsystem=Ubuntu 14.04.1 LTS, provider=rackspace, storagedriver=aufs
 Execution Driver:
 Kernel Version:
 Operating System:
@@ -491,17 +501,7 @@ tutorial_worker_5   /bin/sh -c /etc/init.d/FAH ...   Up
 tutorial_worker_6   /bin/sh -c /etc/init.d/FAH ...   Up
 ```
 
-If we run `docker ps` we can look at the `NAMES` field and see that our containers our spread across the 3 hosts in our cluster.
-
-```sh
-CONTAINER ID        IMAGE                        COMMAND                CREATED              STATUS              PORTS               NAMES
-faadba6dff79        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a minute ago   Up About a minute                       swarm-master/tutorial_worker_6
-3457647206b0        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a minute ago   Up About a minute                       swarm-node-1/tutorial_worker_5
-97daf03f52c2        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a minute ago   Up About a minute                       swarm-node-0/tutorial_worker_4
-fd381b18544e        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a minute ago   Up About a minute                       swarm-master/tutorial_worker_3
-c2edd0380540        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a minute ago   Up About a minute                       swarm-node-1/tutorial_worker_2
-8ddadc49ec72        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   2 minutes ago        Up 2 minutes                            swarm-node-0/tutorial_worker_1
-```
+If we run `docker ps` we can look at the `NAMES` field and to see that our containers our spread across the 3 hosts in our cluster.
 
 #### Cross-Provider Swarm
 
@@ -679,13 +679,16 @@ Since we have not yet created any pods, non are present at the execution of this
 
 ```sh
 # The command is broken down into:
-#  kubectl - The basic Kubernetes Control command.
-#  run-container - The command used to run a container from the command line.
-#  my-nginx - The name to be associated with this container, pod, rc, and other related items.
-#  --image=nginx - Which Docker image to create the container from. (See Docker tutorial for more details)
-#  --replicas=2 - The number of replicas the rc will ensure.
-#  --port=80 - The port to expose.
-[cc@joseph-mpq055-n01] kubectl run-container my-nginx --image=nginx --replicas=2 --port=80
+# kubectl - The basic Kubernetes Control command.
+# run-container - The command used to run a container from the command line.
+# my-nginx - The name to be associated with this container, pod, rc,
+# and other related items.
+# --image=nginx - Which Docker image to create the container from.
+# (See Docker tutorial for more details)
+# --replicas=2 - The number of replicas the rc will ensure.
+# --port=80 - The port to expose.
+[cc@joseph-mpq055-n01] kubectl run-container my-nginx --image=nginx \
+--replicas=2 --port=80
 ```
 
 This command will spawn two nginx pods that have port 80 open to accept incoming HTTP traffic. From here, let's take a look back at the currently existing pods.
