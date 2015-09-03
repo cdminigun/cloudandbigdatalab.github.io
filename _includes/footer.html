@@ -1,24 +1,31 @@
 <footer>
   <hr>
-    <div class="container-fluid text-center">
-      <p>
-        <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&repo=cloudandbigdatalab.github.io&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+  <div class="container-fluid text-center" style="color: gray-lighter;">
+    <p>
+      <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&repo=cloudandbigdatalab.github.io&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
 
-        <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&repo=cloudandbigdatalab.github.io&type=watch&count=true&v=2" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+      <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&repo=cloudandbigdatalab.github.io&type=watch&count=true&v=2" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
 
-        <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&repo=cloudandbigdatalab.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+      <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&repo=cloudandbigdatalab.github.io&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
 
-        <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&type=follow&count=true" frameborder="0" scrolling="0" width="200px" height="20px"></iframe>
-      </p>
-      <p>
-        {% for attribution in site.data.attributions %}
-        <a href="{{ attribution.link }}">{{ attribution.text }}</a>
-        {% if forloop.last != true %}
-        &nbsp; &bull; &nbsp;
-        {% endif %}
+      <iframe src="https://ghbtns.com/github-btn.html?user=cloudandbigdatalab&type=follow&count=true" frameborder="0" scrolling="0" width="200px" height="20px"></iframe>
+    </p>
+    <p>
+      {% for attribution in site.data.attributions %}
+      <a href="{{ attribution.link }}">{{ attribution.text }}</a>
+      {% if forloop.last != true %}
+      &nbsp; &bull; &nbsp;
+      {% endif %}
       {% endfor %}
     </p>
+    <div class="row">
+      {% for attribution in site.data.attributions %}
+      <div class="col-xs-4 col-lg-2">
+        <img src="{{ attribution.logo }}" alt="{{ attribution.logo_alt }}" style="width: auto; height: 70px; padding: 20px;"></img>
+      </div>
+      {% endfor %}
+    </div>
     <p>Chameleon Cloud is funded by a grant from the National Science Foundation.</p>
 
-    </div>
+  </div>
 </footer>
