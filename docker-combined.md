@@ -78,7 +78,7 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 ---|-------------|------------
 1 | Spin up Chameleon resources | 10
 2 | Software installation | 10
-3 | Setup app and ambassador containers, Postgres on host 1, Nginx and uWSGI on host 2 | 10
+3 | Setup containers, Postgres on host 1, Nginx and uWSGI on host 2 | 10
 4 | Test demo site to see if configuration was successful | 1
 
 ### 1. Chameleon Resources
@@ -137,7 +137,10 @@ sudo docker run --name postgres -d cloudandbigdatalab/postgres
 
 # start ambassador container, linking to postgres
 # -p map port 5432 from within container to outside
-sudo docker run --name host2_ambassador -d --link postgres:postgres -p 5432:5432 svendowideit/ambassador
+sudo docker run --name host2_ambassador -d \
+--link postgres:postgres \
+-p 5432:5432 \
+svendowideit/ambassador
 ```
 
 ##### Building from Dockerfile
@@ -277,7 +280,7 @@ to build and use a local image. We're assuming the Dockerfile for server is in t
 Container Name | Apps | Description
 ----------|------|------------
 server | Nginx | handles http requests
-page | uWSGI and Django | uWSGI connects Nginx to Django, Django generates the html
+page | uWSGI and Django | uWSGI connects Nginx to Django, Django makes page
 db | Postgres | database for page, Django connects to Postgres
 
 #### Run the Composition
