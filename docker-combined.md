@@ -505,7 +505,7 @@ and have a mixed cluster. In testing this worked just as well as if when they we
 ### Conclusion
 Docker intends for Compose, Machine, and Swarm to work together to enable simple yet powerful workflows. The experience of putting this tutorial together shows that's not reality today. However, Compose and Machine work pretty well on their own barring Machine's Chameleon incompatibility. The synthesis between Compose and Machine is also solid right now. Swarm is problematic and not as useful as one might initially think. But Docker does disclaim that these tools are not production ready yet. In the future they should work better for multi-container apps and services.
 
-# Section 2: Kubernetes
+# Section 3: Kubernetes
 
 ## Tutorial
 
