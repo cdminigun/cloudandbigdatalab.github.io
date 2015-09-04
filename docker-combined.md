@@ -172,6 +172,7 @@ You will need to replace the ip in one of the following commands. If you need to
 # --expose port 5432 (postgres default) to linking containers
 # -e sets environment variable for postgres, shared to linked containers
 # replace host1_local_ip with local ip of your host 1 instance
+
 sudo docker run --name host1_ambassador -d \
 --expose 5432 \
 -e POSTGRES_PORT_5432_TCP=tcp://host1_local_ip:5432 \
@@ -315,10 +316,12 @@ The output should look similar to this.
 
 ```sh
 Name                     Command               State              Ports
------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------
 tutorial_db_1       /docker-entrypoint.sh postgres   Up      5432/tcp
 tutorial_page_1     ./startup.sh                     Up      3031/tcp
-tutorial_server_1   nginx -g daemon off;             Up      443/tcp, 0.0.0.0:80->80/tcp
+tutorial_server_1   nginx -g daemon off;             Up      443/tcp,
+0.0.0.0:80->80/tcp
 ```
 
 Now if you visit the ip of your Chameleon machine in the browser you should see the page running.
@@ -501,7 +504,30 @@ tutorial_worker_5   /bin/sh -c /etc/init.d/FAH ...   Up
 tutorial_worker_6   /bin/sh -c /etc/init.d/FAH ...   Up
 ```
 
-If we run `docker ps` we can look at the `NAMES` field and to see that our containers our spread across the 3 hosts in our cluster.
+If we run `docker ps` we can look at the `NAMES` field and see that our containers our spread across the 3 hosts in our cluster.
+
+```sh
+CONTAINER ID        IMAGE                        COMMAND                CREATED
+             STATUS              PORTS               NAMES
+faadba6dff79        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a
+minute ago   Up About a minute                       
+swarm-master/tutorial_worker_6
+3457647206b0        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a
+minute ago   Up About a minute                       
+swarm-node-1/tutorial_worker_5
+97daf03f52c2        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a
+minute ago   Up About a minute                       
+swarm-node-0/tutorial_worker_4
+fd381b18544e        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a
+minute ago   Up About a minute                       
+swarm-master/tutorial_worker_3
+c2edd0380540        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   About a
+minute ago   Up About a minute                       
+swarm-node-1/tutorial_worker_2
+8ddadc49ec72        jordan0day/folding-at-home   "/bin/sh -c '/etc/in   2
+minutes ago        Up 2 minutes                            
+swarm-node-0/tutorial_worker_1
+```
 
 #### Cross-Provider Swarm
 
@@ -637,13 +663,16 @@ KUBE_PROXY_ARGS="--master=http://kubernetes-master:8080"
 On the Master (the first host), we need to restart the service in order for the configuration changes to take effect. Additionally, we will enable each service so that is will start at boot for the server.
 
 ```sh
-[cc@joseph-mpq055-n01] for cmd in restart enable status; do sudo systemctl $cmd etcd kube-apiserver kube-scheduler kube-controller-manager; done
+for cmd in restart enable status; \
+do sudo systemctl $cmd etcd kube-apiserver kube-scheduler \
+kube-controller-manager; done
 ```
 
 The Node (the second host) will also need to restart and enable similar services.
 
 ```sh
-[cc@joseph-mpq055-n02] for cmd in restart enable status; do sudo systemctl $cmd kube-proxy kubelet docker; done
+for cmd in restart enable status; \
+do sudo systemctl $cmd kube-proxy kubelet docker; done
 ```
 
 Now that all the services are enabled and restarted with the new configurations, we can now begin to manipulate and deploy across the Kubernetes cluster.
@@ -672,7 +701,8 @@ To see our active pods, we will use this command:
 
 ```sh
 [cc@joseph-mpq055-n01] kubectl get pods
-POD       IP        CONTAINER(S)   IMAGE(S)   HOST      LABELS    STATUS    CREATED   MESSAGE
+POD       IP        CONTAINER(S)   IMAGE(S)   HOST      LABELS    STATUS
+    CREATED   MESSAGE
 ```
 
 Since we have not yet created any pods, non are present at the execution of this command. Just to get started, we will begin by launching two instances of nginx that are guaranteed by a **Replication Controller**. A **Replication Controller (RC)** is a tool utilized by Kubernetes to ensure a specific number of pod instances are always running. It will either create or destroy more pods until it is within the specific amount provided. In addition, the RC will also be able to account for Node failure in order to migrate which host the pods are being hosted on without user intervention. The command we will use will be:
@@ -687,27 +717,33 @@ Since we have not yet created any pods, non are present at the execution of this
 # (See Docker tutorial for more details)
 # --replicas=2 - The number of replicas the rc will ensure.
 # --port=80 - The port to expose.
-[cc@joseph-mpq055-n01] kubectl run-container my-nginx --image=nginx \
---replicas=2 --port=80
+
+kubectl run-container my-nginx --image=nginx --replicas=2 --port=80
 ```
 
 This command will spawn two nginx pods that have port 80 open to accept incoming HTTP traffic. From here, let's take a look back at the currently existing pods.
 
 ```sh
-[cc@joseph-mpq055-n01] kubectl get pods
-POD              IP        CONTAINER(S)   IMAGE(S)   HOST           LABELS                   STATUS    CREATED     MESSAGE
-my-nginx-5p2n5                                       10.12.0.110/   run-container=my-nginx   Pending   6 seconds
+kubectl get pods
+POD              IP        CONTAINER(S)   IMAGE(S)   HOST           LABELS
+                   STATUS    CREATED     MESSAGE
+my-nginx-5p2n5                                       10.12.0.110/   
+run-container=my-nginx   Pending   6 seconds
                            my-nginx       nginx
-my-nginx-valfk                                       10.12.0.110/   run-container=my-nginx   Pending   6 seconds
+my-nginx-valfk                                       10.12.0.110/   
+run-container=my-nginx   Pending   6 seconds
 ```
 
 You can see the pods are still spawning given thei current status as **Pending**. Given a few more moments, the pods are now officialy in the **Running** state:
 
 ```sh
-POD              IP        CONTAINER(S)   IMAGE(S)   HOST           LABELS                   STATUS    CREATED     MESSAGE
-my-nginx-5p2n5                                       10.12.0.110/   run-container=my-nginx   Running   9 seconds
+POD              IP        CONTAINER(S)   IMAGE(S)   HOST           LABELS
+                   STATUS    CREATED     MESSAGE
+my-nginx-5p2n5                                       10.12.0.110/   
+run-container=my-nginx   Running   9 seconds
                            my-nginx       nginx
-my-nginx-valfk                                       10.12.0.110/   run-container=my-nginx   Running   9 seconds
+my-nginx-valfk                                       10.12.0.110/   
+run-container=my-nginx   Running   9 seconds
                            my-nginx       nginx
 ```
 
