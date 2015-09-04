@@ -1,4 +1,6 @@
 # Introduction
+
+## Overview
 This document serves as a collection of an ongoing series of tutorials authored for Docker and services surrounding Docker on the Chameleon Cloud platform. Spanning topics from basic installation to creating customized Docker applications that run across multiple hosts, these sections are designed to serve as a starting point from which users can create their own container-based applications.
 
 This series also covers Kubernetes, a solution that uses Docker containers across a wide variety of hosts to offer a resilient and reliable solution for applications. We demonstrate both Kubernetes and Docker's native solution so users can make a knowledgeable choice about which solution is best. We start with an in-depth look at some of the technologies underlying Docker that enable additional features in management and security.
@@ -196,27 +198,23 @@ sudo docker build -t nginx .
 
 Visit the public ip of your host 2 instance in your browser. If it worked congratulations!
 
-## Section 3: Machine, Compose, and Swarm
+# Section 2: Machine, Compose, and Swarm
 
-**Because of incompatibilities, part of this tutorial uses Rackspace instead of Chameleon. See the [Machine](#machine) section for details.**
+## Compose
+Compose simplifies the process of arranging and linking containers together. Compose lets us specify the links and runtime configurations of containers in a single config file, rather than having several lengthy commands to execute in the right sequence. In the first tutorial we setup containers on 2 different hosts and linked them together to run a simple webpage. In this tutorial we will set up a similar page that lets you post messages and lists those previously posted. It uses 3 containers and we'll arrange them with Compose.
+
+## Machine
+Machine allows us to create Docker hosts and control them without interacting with the host machines directly. This way you don't have to SSH to machines running the Docker daemon to run containers. Chameleon won't work for this part of the tutorial because of problems with Chameleon's lease system. Support for Chameleon will likely happen in the future. See this [issue](https://github.com/docker/machine/issues/1461) on their GitHub. You could also use virtual machines running on a Chameleon instance but we ran into issues installing VirtualBox on the default Chameleon CentOS image. So for now we're going to demo Machine with Rackspace to give you an idea of its potential. **We will be controlling everything from a Chameleon machine however.**
+
+## Swarm
+Swarm is used to group multiple Docker hosts together so that containers or groups of containers can scale across machines. We'll also be demoing this on Rackspace because we use Machine to setup our Swarm.
+
+## Tutorial
+**Because of incompatibilities, part of this tutorial uses Rackspace instead of Chameleon. See the Machine section for details.**
 
 This tutorial will cover using Docker Machine, Compose and Swarm. Ultimately these tools are intended to be used together but because they're not yet mature that synthesis is limited. We'll discuss the limitations in more detail throughout the tutorial. We'll instead focus on using each tool individually and demonstrate them together in ways that currently work.
 
-#### Compose
-Compose simplifies the process of arranging and linking containers together. Compose lets us specify the links and runtime configurations of containers in a single config file, rather than having several lengthy commands to execute in the right sequence. In the first tutorial we setup containers on 2 different hosts and linked them together to run a simple webpage. In this tutorial we will set up a similar page that lets you post messages and lists those previously posted. It uses 3 containers and we'll arrange them with Compose.
-
-#### Machine
-Machine allows us to create Docker hosts and control them without interacting with the host machines directly. This way you don't have to SSH to machines running the Docker daemon to run containers. Chameleon won't work for this part of the tutorial because of problems with Chameleon's lease system. Support for Chameleon will likely happen in the future. See this [issue](https://github.com/docker/machine/issues/1461) on their GitHub. You could also use virtual machines running on a Chameleon instance but we ran into issues installing VirtualBox on the default Chameleon CentOS image. So for now we're going to demo Machine with Rackspace to give you an idea of its potential. **We will be controlling everything from a Chameleon machine however.**
-
-#### Swarm
-Swarm is used to group multiple Docker hosts together so that containers or groups of containers can scale across machines. We'll also be demoing this on Rackspace because we use Machine to setup our Swarm.
-
-### Prerequisites
-
-It's expected that you have gone through [Docker Tutorial 1](http://cloudandbigdatalab.github.io/docs/Chameleon%20Cloud%20Tutorial%20-%20Docker%20Fundamentals.pdf) or are already familiar with its content. No more prior knowledge is required past the first tutorial.
-
 ### Steps Outline
-
 The whole tutorial (barring problems) will probably take 45 mins to an hour. It can take a long time to update your Chameleon instance and creating hosts with Machine can take a few minutes per host. How long your hosts take to create depends on the type and provider.
 
 \# | Task | Approximate Time (mins)
@@ -226,8 +224,7 @@ The whole tutorial (barring problems) will probably take 45 mins to an hour. It 
 3 | Machine | 10
 4 | Swarm | 20
 
-### Setup
-
+### Step 1: Setup
 We'll be using the default Chameleon CentOS image for this tutorial.
 
 ```sh
@@ -248,8 +245,7 @@ Then follow these instructions to install [Machine](https://docs.docker.com/mach
 
 If you're going to try to use Machine with Rackspace, VM's, or another provider follow they're docs to get setup.  It's fairly easy to complete the demo with VM's on your own physical machine.
 
-### Compose
-
+### Step 2: Compose
 With Compose you outline your container configuration and arrangement with a YAML file name docker-compose.yml. Our [docker-compose.yml](https://github.com/cloudandbigdatalab/tutorial-cham-docker-2/blob/master/docker-compose.yml) is on our GitHub. This lays out the 3 container composition. In our docker-compose.yml we specify to pull out images from Docker Hub. All the resources, including the Dockerfile, to build these images is available on our [GitHub](https://github.com/cloudandbigdatalab/tutorial-cham-docker-2). If you wanted to build the images yourself or make modifications, download the repo then change
 
 ```yml
@@ -271,7 +267,6 @@ page | uWSGI and Django | page generation
 db | Postgres | database
 
 #### Run the Composition
-
 ```shell
 docker-compose -p tutorial up -d
 ```
@@ -305,12 +300,10 @@ tutorial_server_1   nginx -g daemon off;             Up      443/tcp,
 
 Now if you visit the ip of your Chameleon machine in the browser you should see the page running.
 
-### Machine
-
+### Step 3: Machine
 So now we're going to do the same thing but we're going to run our composition on a Docker host we setup with Machine. As we outlined in the introduciton we can't use Machine to create hosts on Chameleon (or VM's) so we're using Rackspace.
 
 #### Create a host
-
 We have our account information in environment variables in this example. `-d rackspace` specifies the *driver* as Rackspace. This will take several minutes.
 
 ```sh
@@ -318,14 +311,12 @@ docker-machine create -d rackspace docker-main
 ```
 
 #### Point Docker at Remote Machine
-
 ```sh
 eval "$(docker-machine env docker-main)"
 ```
 Now if we run `docker ps` the 3 containers our gone because we're looking at the remote host.
 
 #### Run Composition on Remote Host
-
 The commands are exactly the same as before.
 
 Run composition.
@@ -348,12 +339,10 @@ docker-machine ip docker-main
 
 Then if you visit the ip in the browser you should see the same page as before. Note that the top left string on the page is the id of the page container. It will be different from before.
 
-### Swarm
-
+### Step 4: Swarm
 As noted in the introduction we'll be using Rackspace for this part of the tutorial as well. It is possible to manually setup a Swarm cluster of Chameleon Docker hosts but we won't be doing that here. We'll be using Machine which simplifies the process.
 
 #### Our Composition
-
 For this demo we can't really use the multi-container setup we used earlier. This is for two reasons:
 
 1. Currently linked containers must be run on the same host. This defeats the point of Swarm. Docker's networking is being overhauled to allow cross-host links and the feature is available in experimental builds. We were unable to get it working at the time of this writing however.
@@ -363,13 +352,11 @@ For this demo we can't really use the multi-container setup we used earlier. Thi
 We're still using an (extremely sparse) [docker-compose.yml](https://github.com/cloudandbigdatalab/tutorial-cham-docker-2/blob/master/swarm/docker-compose.yml) for this. It consists of one service / container that runs [folding@home](https://folding.stanford.edu). We're going to run it and scale it across a few nodes.
 
 #### Generate Swarm Token
-
 We're generating the token and saving to an environment variable.
 
 export SWARM_TOKEN=$(docker run swarm create)
 
 #### Swarm Master
-
 Again the account information needed for Rackspace is stored in environment variables. Creating the machine will a few minutes.
 
 ```sh
@@ -378,7 +365,6 @@ docker-machine create -d rackspace --swarm --swarm-master \
 ```
 
 #### Swarm Nodes
-
 Here we're using a bash loop to create 2 nodes.
 
 ```sh
@@ -389,7 +375,6 @@ done
 ```
 
 #### Point Docker at Swarm
-
 Now we're going to point the Docker client at our Swarm cluster.
 
 ```sh
@@ -443,7 +428,6 @@ No Proxy:
 ```
 
 #### Run Composition
-
 Note that you need to download the docker-compose.yml into a different directory from earlier and run Compose from there.
 
 ```sh
@@ -509,7 +493,6 @@ swarm-node-0/tutorial_worker_1
 ```
 
 #### Cross-Provider Swarm
-
 You can also setup a Swarm cluster across different providers. For example we could have launched one of our containers on Digital Ocean with:
 
 ```sh
@@ -520,13 +503,13 @@ docker-machine create -d digitalocean --swarm \
 and have a mixed cluster. In testing this worked just as well as if when they were on the same provider.
 
 ### Conclusion
-
 Docker intends for Compose, Machine, and Swarm to work together to enable simple yet powerful workflows. The experience of putting this tutorial together shows that's not reality today. However, Compose and Machine work pretty well on their own barring Machine's Chameleon incompatibility. The synthesis between Compose and Machine is also solid right now. Swarm is problematic and not as useful as one might initially think. But Docker does disclaim that these tools are not production ready yet. In the future they should work better for multi-container apps and services.
 
-## Kubernetes
+# Section 2: Kubernetes
+
+## Tutorial
 
 ### Objectives
-
 In this tutorial, you will be walked through the basic installation of Kubernetes on the currently available CentOS images provided by Chameleon. Following installation, the guide will continue on to explain the basics and advanced usage of Kubernetes.
 
 | \# | Action | Detail | Time (min) |
@@ -536,7 +519,6 @@ In this tutorial, you will be walked through the basic installation of Kubernete
 | 2 | Using Setup Files With Kubernetes | Finally, we will demonstrate how to create files that will setup an application for us to build up and tear down at will. | 5 |
 
 ### Prerequisites
-
 The following prerequisites are expected for successful completion of this tutorial:
 
 -   A Chameleon user account
@@ -546,7 +528,6 @@ The following prerequisites are expected for successful completion of this tutor
 -   Two active instances accesible by one another through a network connection.
 
 ### Step 1: Setting Up Kubernetes
-
 Kubernetes is a system used to control a wide number of hosts for the purpose of deploying and managin containerized applications. In our specific setup, we will be using Kubernetes in association with Docker to serve as our application container system. The fundamental idea behind Kubernetes, beyond the setup stage, is that, as the user, there is no need to know about which host an application is running on. This serves the purpose of requiring the user to only need to focus on the application and not have to worry about the specifics of the host or management.
 
 The setup of Kubernetes relies on a single host serving as a **Master** that will serve as the primary controller that will manage the Kubernetes installation. Any additional hosts that are to be used for application deployment are defined as a **Node** (previously described as a **Minion** in prior documentation). For the tutorial, the design will be to assign one single instance as the Master and the second as the Node.
@@ -657,7 +638,6 @@ do sudo systemctl $cmd kube-proxy kubelet docker; done
 Now that all the services are enabled and restarted with the new configurations, we can now begin to manipulate and deploy across the Kubernetes cluster.
 
 ### Step 2: Simple Uses of Kubernetes
-
 Now that we have the Kubernetes system in place, we can now use it to deploy applications. As mentioned before, the Master controls the entirety of Kubernetes, so each of these commands will be run on the Master host/instance that we set up previously. In our example, this would be the 10.12.0.26 machine. To start off with, we will take a look at the attached nodes using the followin command.
 
 ```sh
@@ -742,7 +722,6 @@ Now that we are done, we can simply destroy them.
 ```
 
 ### Step 3: Using Setup Files With Kubernetes
-
 In this final section, we will go about creating a series of files that can be used to define an application. For our example, we will be recreating the same tutorial released as the Docker multi-host application in the first Docker tutorial. [https://github.com/cloudandbigdatalab/tutorial-cham-docker-1](https://github.com/cloudandbigdatalab/tutorial-cham-docker-1)
 
 First and foremost, it is very advantageous to create a directory where all the files will exist. The reason will be explained shortly. So start off with:
