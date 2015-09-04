@@ -1,18 +1,12 @@
-## Introduction
-This document serves as a collection of an ongoing series of tutorials authored for Docker and services surrounding Docker on the Chameleon Cloud platform. Starting with the basics of how to get Docker installed to creating customized Docker applications that span a series of hosts, these sections are designed to serve as a starting point from which users can create their own container-based applications. Included within this series also exists topics covering Kubernetes, a solution that uses Docker containers across a wide variety of hosts to offer a resilient and reliable solution for applications. This is compared to Docker's native solution to compare and contrast the two so that users can make a knowledgeable choice about which solution is best. Finally, Docker is examined in slightly more depth to take a look at their use of some of the modern Linux kernel features to offer additional features in management and security.
+# Introduction
+This document serves as a collection of an ongoing series of tutorials authored for Docker and services surrounding Docker on the Chameleon Cloud platform. Spanning topics from basic installation to creating customized Docker applications that run across multiple hosts, these sections are designed to serve as a starting point from which users can create their own container-based applications.
 
-## Section 1: CGroups and Namespaces
+This series also covers Kubernetes, a solution that uses Docker containers across a wide variety of hosts to offer a resilient and reliable solution for applications. We demonstrate both Kubernetes and Docker's native solution so users can make a knowledgeable choice about which solution is best. We start with an in-depth look at some of the technologies underlying Docker that enable additional features in management and security.
 
-### Objectives
-
-This document is meant to be used as an informative means to demonstrate what kernel features Docker is taking advantage of to offer an overall better and more efficient administration and security amongst its containers.
-
-### Introduction
-
-Docker, being one of the leaders in the container-based world, often takes advantage of several features belonging to the Linux kernel as a means to better its service. In particular, Docker's use of control groups (cgroups) and namespaces and how each play a role in resource management and security cannot be overlooked. In order to understand what Docker provides through these features, one must first understand what they accomplish individually.
+## CGroups and Namespaces
+Being one of the leaders in the container-based world, Docker often takes advantage of several features belonging to the Linux kernel as a means to better its service. In particular, Docker's use of control groups (cgroups) and namespaces and how each play a role in resource management and security cannot be overlooked. In order to understand what Docker provides through these features, one must first understand what they accomplish individually.
 
 ### Namespaces
-
 To start off with, namespaces are a very convenient feature of Linux that serves to provide a somewhat virtualized resource that acts as a go between for processes within the group and the actual resources. By sectioning off these processes into their own groups, they are unable to see the resources being used by separate groups while still remaining visible to those processes within the same group. Using this allows users to segment things such as: Networking, PIDs, Users, Mounts, and more. Essentially, the process will have no knowledge of processes outside of its group and would have no need to know about them, providing an isolated bundle of processes.
 
 When applying this knowledge towards the implementation with Docker, the advantages then become clear in the form of containers and linked-containers being permitted to run on the same host, but oblivious about any other running containers. Docker, by default, will separate a newly created container into its own namespace to distance containers from one another. This is done across most of the namespaces listed before and allows the container to act as a solo application on the host.
@@ -22,12 +16,7 @@ Like many other Linux features, namespaces establish themselves using a virtual 
 This usage of namespaces plays hand-in-hand with cgroups and their many uses.
 
 ### CGroups
-
-When speaking about cgroups, the first idea that should come to mind is of resource management. Because where cgroups excels is in an area similar to namespaces, by separating and grouping processes into whatever organizations the user prefers and inflicting global (group-wide) rules upon them. Cgroups provide a kernel-level tool for resource management and accounting that is greatly relied upon by Docker and many other modern tools. Beginning with the organization, processes are organized into cgroups based first and foremost off of inheritance. That is, child processes will inerhit their initial group based off the parent group they belong to.
-
-**NOTE: Only certain properties are inherited from parent cgroups that can also be modified upon child process creation.**
-
-Cgroups are used to divide up the resources of a system into separate catagories that can be described in terms of limits and shares among the host resources. The first and most prevalent example is the sharing of the CPU amongst different processes. Initially, one might think to allocate a certain number of cores to system processes and leave the rest for userspace processes (assuming the system contains enough cores). From there, the user processes may spawn a webserver which would be placed in its own cgroup along with its children so that they only use a certain percentage of the CPU time, RAM, I/O, Network, etc. These limitations and rules are used to define the resource behavior of programs within their cgroups so that each has their "fair share".
+When speaking about cgroups, the first idea that should come to mind is of resource management. Because where cgroups excels is in an area similar to namespaces, by separating and grouping processes into whatever organizations the user prefers and inflicting global (group-wide) rules upon them. Cgroups provide a kernel-level tool for resource management and accounting that is greatly relied upon by Docker and many other modern tools. Beginning with the organization, processes are organized into cgroups based first and foremost off of inheritance. That is, child processes will inherit their initial group based off the parent group they belong to. NOTE: Only certain properties are inherited from parent cgroups that can also be modified upon child process creation. Cgroups are used to divide up the resources of a system into separate catagories that can be described in terms of limits and shares among the host resources. The first and most prevalent example is the sharing of the CPU amongst different processes. Initially, one might think to allocate a certain number of cores to system processes and leave the rest for userspace processes (assuming the system contains enough cores). From there, the user processes may spawn a webserver which would be placed in its own cgroup along with its children so that they only use a certain percentage of the CPU time, RAM, I/O, Network, etc. These limitations and rules are used to define the resource behavior of programs within their cgroups so that each has their "fair share".
 
 Much like with CPU scheduling, cgroups are often used to evenly distribute resources amongst its processes, but the difference is that it does not need to be equal. For example, when running unfamiliar applications, one thought might be to run all user-level programs in their own cgroup so as to limit their usage of the system resources to a certain extent such that they won't be able to monopolize and steal away these resources from the system. Whether the exhaustion of a resource is intentional or accidental, cgroups provide a safety barrier (similar to that of saving 5% of the hard disk for root) that can be used for the safety of the host as a whole.
 
@@ -35,20 +24,12 @@ In terms of how Docker uses cgroups is that Docker will place all the containers
 
 Similar to the namespaces, cgroups manifest themselves in the virtual filesystem. Depending on your installation, they are often found at **/sys/fs/cgroup/** or **/cgroup/**. From this root directory, you can see each subsystem has its own directory within which you can create cgroups within. Aside from that, you are also capable of mounting a cgroup and assigning the subsystems desired to be nested within using the **mount** command. Cgroups subscribe to a hierarchical structure in order to create nested groups of related tasks such that related processes can be stored together. This can be extended to running all tasks related to the webserver within one cgroup, internally, creating different cgroups for the database, backend, etc.
 
-## Section 2: Docker Fundamentals
+# Section 1: Docker Fundamentals
 
-In this tutorial we're going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the "Getting Started" tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts.
-
-### Prerequisites
-
-It's expected that you have a general knowledge of Linux command-line environments, though most of the steps can be copied exactly without modification. No previous knowledge of Docker is required and we will provide some explanation of key Docker terms and concepts below. See the official Docker [docs](https://docs.docker.com/) for more detail and reference.
-
-### What is Docker?
-
+## What is Docker?
 Docker is conceptually similar to virtual machines but has much less resource overheard because it doesn't run a full guest OS. Docker containers start in seconds vs minutes, take up less space, and are less hardware demanding because they share resources with the host OS. Read in-depth [here](https://www.docker.com/whatisdocker).
 
-### Terms & Concepts
-
+## Terms and Concepts
 Most of the docker descriptions are taken directly from their [glossary](https://docs.docker.com/reference/glossary/).
 
 **Docker Engine or "Docker":** The docker daemon process running on the host which manages images and containers
@@ -72,6 +53,9 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 
 **uWGSI:** An application server that connects to Nginx. In our tutorial we're using it to run a simple Python app that generates the demo page. [Official Site](https://uwsgi-docs.readthedocs.org/en/latest/)
 
+## Tutorial
+In this tutorial we're going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the "Getting Started" tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts. See the official Docker docs for more detail and reference. <https://docs.docker.com/>
+
 ### Steps Outline
 
 \# | Description | Time (mins)
@@ -81,26 +65,22 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 3 | Setup containers, Postgres on host 1, Nginx and uWSGI on host 2 | 10
 4 | Test demo site to see if configuration was successful | 1
 
-### 1. Chameleon Resources
+### Step 1: Chameleon Resources
+Create 2 Chameleon baremetal servers. We used a CentOS 7 image for this tutorial but feel free to use any other distro as long it runs Docker.
 
-Create 2 Chameleon baremetal servers. We used a CentOS 7 image for this tutorial but feel free to use any other Distro as long it runs Docker.
-
-### 2. Software Installation
-
+### Step 2: Software Installation
 Install Docker on each server with `sudo yum install docker`. This installs the Docker daemon and client tools. You may also wish to install an editor such as vim and git (if not already installed, included in our CentOS image).
 
 **Important**  
 The Docker daemon needs to be running before you can use Docker. Start it with `sudo service docker start`. **If you're getting errors with every Docker command this may be the cause.**
 
-### 2. Container Setup
-
+### Step 3: Container Setup
 Before you move on let's explain some things. You will be setting up one host with a Postgres (SQL database) container. The other host will be setup with Nginx (web server) and uWGSI (interface to Python script that generates actual page) containers. To connect the uWGSI container across hosts to the Postgres container we will use *ambassador* containers, one on each host.  
 
 **Note**  
 You have two options to deploy the containers. You can pull already built containers from our [Docker Hub](https://hub.docker.com/u/cloudandbigdatalab/) repos and run them. Or you can pull this GitHub repo and build the Docker images yourself using the Dockerfile in each directory. If you want to edit the site content you will need to build the images yourself after making your edits, although you can edit the database by simply connecting to it. The ambassador containers we're using are maintained by a Docker employee and thus we'll only be pulling those. You can pull an image before running it with `sudo docker pull image_name` or you can  just `sudo docker run --name container_name -d image_name` and Docker will automatically pull the image for you.
 
 **Useful Commands**
-
 ```sh
 # show running containers
 sudo docker ps
@@ -163,7 +143,6 @@ sudo docker build -t postgres .
 #### Host 2
 
 ##### Pulling from Docker Hub
-
 **Note**  
 You will need to replace the ip in one of the following commands. If you need to restart the uwsgi container you will need to rm both the uwsgi and nginx containers then run again. The uwsgi container must be run first.
 
@@ -213,7 +192,7 @@ sudo docker build -t nginx .
 # EXCEPT change cloudandbigdatalab/image_name to image_name
 ```
 
-### Test Website
+### Step 4: Test Website
 
 Visit the public ip of your host 2 instance in your browser. If it worked congratulations!
 
