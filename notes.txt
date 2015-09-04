@@ -1,0 +1,1 @@
+pandoc -V geometry:margin=1in --latex-engine=xelatex --toc -o docker-combined.pdf docker-combined.md
