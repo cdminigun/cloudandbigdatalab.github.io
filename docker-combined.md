@@ -47,13 +47,13 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 - A standard set of instructions
 - The concept is borrowed from Shipping Containers, which define a standard to ship goods globally. Docker defines a standard to ship software.
 
-**Dockerfile:** A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile. [Dockerfile Reference](https://docs.docker.com/reference/builder/)
+**Dockerfile:** A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile. <https://docs.docker.com/reference/builder/>
 
-**Postgres:** An SQL database. [Official Site](http://www.postgresql.org)
+**Postgres:** An SQL database. <http://www.postgresql.org>
 
-**Nginx "engine x":** A web server. [Official Site](http://nginx.com)
+**Nginx "engine x":** A web server. <http://nginx.com>
 
-**uWGSI:** An application server that connects to Nginx. In our tutorial we're using it to run a simple Python app that generates the demo page. [Official Site](https://uwsgi-docs.readthedocs.org/en/latest/)
+**uWGSI:** An application server that connects to Nginx. In our tutorial we're using it to run a simple Python app that generates the demo page. <https://uwsgi-docs.readthedocs.org/en/latest/>
 
 ## Tutorial
 In this tutorial we're going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the "Getting Started" tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts. See the official Docker docs for more detail and reference. <https://docs.docker.com/>
@@ -73,8 +73,7 @@ Create 2 Chameleon baremetal servers. We used a CentOS 7 image for this tutorial
 ### Step 2: Software Installation
 Install Docker on each server with `sudo yum install docker`. This installs the Docker daemon and client tools. You may also wish to install an editor such as vim and git (if not already installed, included in our CentOS image).
 
-**Important**  
-The Docker daemon needs to be running before you can use Docker. Start it with `sudo service docker start`. **If you're getting errors with every Docker command this may be the cause.**
+The Docker daemon needs to be running before you can use Docker. Start it with `sudo service docker start`. If you're getting errors with every Docker command this may be the cause.
 
 ### Step 3: Container Setup
 Before you move on let's explain some things. You will be setting up one host with a Postgres (SQL database) container. The other host will be setup with Nginx (web server) and uWGSI (interface to Python script that generates actual page) containers. To connect the uWGSI container across hosts to the Postgres container we will use *ambassador* containers, one on each host.  
