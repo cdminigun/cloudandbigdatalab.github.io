@@ -511,7 +511,7 @@ Docker intends for Compose, Machine, and Swarm to work together to enable simple
 ### Objectives
 In this tutorial, you will be walked through the basic installation of Kubernetes on the currently available CentOS images provided by Chameleon. Following installation, the guide will continue on to explain the basics and advanced usage of Kubernetes.
 
-<table class="table">
+<table>
   <tr>
     <td>1</td>
     <td>Setting Up Kubernetes</td>
