@@ -511,16 +511,25 @@ Docker intends for Compose, Machine, and Swarm to work together to enable simple
 ### Objectives
 In this tutorial, you will be walked through the basic installation of Kubernetes on the currently available CentOS images provided by Chameleon. Following installation, the guide will continue on to explain the basics and advanced usage of Kubernetes.
 
-| \# | Action | Detail | Time (min) |
-|----|--------|--------|------------|
-| 1 | Setting Up Kubernetes | To begin, users will be shown the steps necessary
-to install Kubernetes on a Chameleon Bare Metal Server. | 5 |
-| 2 | Simple Uses of Kubernetes | Here, users will be demonstrated the several
-different uses of Kubernetes ranging from simple deployments to creating 
-Services to run a web service. | 5 |
-| 2 | Using Setup Files With Kubernetes | Finally, we will demonstrate how to
-create files that will setup an application for us to build up and tear down at
-will. | 5 |
+-------------------------------------------------------------------------------
+\#  Action                     Detail                                Time (min)
+--- -------------------------- ------------------------------------- ----------
+ 1  Setting Up Kubernetes      To begin, users will be shown the          5
+                               steps necessary to install
+                               Kubernetes on a Chameleon Bare Metal
+                               Server.
+
+ 2  Simple Uses of Kubernetes  Here, users will be demonstrated the       5
+                               several different uses of Kubernetes
+                               ranging from simple deployments to
+                               creating Services to run a web
+                               service.
+
+ 3  Using Setup Files With     Finally, we will demonstrate how to        5
+    Kubernetes                 create files that will setup an
+                               application for us to build up and
+                               tear down at will.
+-------------------------------------------------------------------------------
 
 ### Prerequisites
 The following prerequisites are expected for successful completion of this tutorial:
