@@ -39,6 +39,11 @@ Docker provides the Docker Hub service to host and build images. Users create Do
 Images fulfill different needs and workflows. System images are useful to build off or provide an environment to work in. Processing type images take input files and produce processed output files. One-off images run some predetermined task and generate a result or success message. We'll look at specific examples below.
 
 ### System Images
+You can use Docker to quickly launch into a particular Linux distro environment. For example to launch into a Bash shell on Ubuntu, run `docker run -it ubuntu /bin/bash` or `docker run -it -v $(pwd):/source` if you need to save work. The `-v $(pwd):/source` argument mounts the current directory inside the container at `/source`.
+
+System images are also used as the base for other images. To do this you specify a system image in the `FROM` tag of a Dockerfile. For an example look at the Dockerfile for Jekyll, a static site generator app. It uses Alpine Linux as its base.
+
+<https://hub.docker.com/r/jekyll/jekyll/~/dockerfile/>
 
 ### Processing Images
 
