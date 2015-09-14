@@ -33,6 +33,17 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 
 **uWGSI:** An application server that connects to Nginx. In our tutorial we're using it to run a simple Python app that generates the demo page. <https://uwsgi-docs.readthedocs.org/en/latest/>
 
+## Image Repositories
+Docker provides the Docker Hub service to host and build images. Users create Docker images and push them to Hub for others to use and expand on. Hub also allows for automated builds. Automated builds link to a repo (GitHub or Bitbucket) and build an image on Hub servers using files from the repo automatically when you push to the repo.
+
+Images fulfill different needs and workflows. System images are useful to build off or provide an environment to work in. Processing type images take input files and produce processed output files. One-off images run some predetermined task and generate a result or success message. We'll look at specific examples below.
+
+### System Images
+
+### Processing Images
+
+### One-Off Images
+
 ## CGroups and Namespaces
 Being one of the leaders in the container-based world, Docker often takes advantage of several features belonging to the Linux kernel as a means to better its service. In particular, Docker's use of control groups (cgroups) and namespaces and how each play a role in resource management and security cannot be overlooked. In order to understand what Docker provides through these features, one must first understand what they accomplish individually.
 
@@ -870,7 +881,7 @@ services/docker-post-svc
 services/docker-web-svc
 ```
 
-And voila, we now have an active application. While the setup is daunting, the ease of deployment and management is what makes Kubernetes worthwhile. Coupled with the load balancing and resiliance, it is hard to beat. Want to tear down your app? Run:
+And voila, we now have an active application. While the setup is daunting, the ease of deployment and management is what makes Kubernetes worthwhile. Coupled with the load balancing and resilience, it is hard to beat. Want to tear down your app? Run:
 
 ```sh
 [cc@joseph-mpq055-n01] kubectl delete -f .
