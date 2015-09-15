@@ -31,10 +31,12 @@ In terms of how Docker uses cgroups is that Docker will place all the containers
 Similar to the namespaces, cgroups manifest themselves in the virtual filesystem. Depending on your installation, they are often found at `/sys/fs/cgroup/` or `/cgroup/`. From this root directory, you can see each subsystem has its own directory within which you can create cgroups within. Aside from that, you are also capable of mounting a cgroup and assigning the subsystems desired to be nested within using the `mount` command. Cgroups subscribe to a hierarchical structure in order to create nested groups of related tasks such that related processes can be stored together. This can be extended to running all tasks related to the webserver within one cgroup, internally, creating different cgroups for the database, backend, etc.
 
 ## Using Docker
-Docker is conceptually similar to virtual machines but has much less resource overheard because it doesn't run a full guest OS. Docker containers start in seconds vs minutes, take up less space, and are less hardware demanding because they share resources with the host OS. Read in-depth [here](https://www.docker.com/whatisdocker).
+Docker is conceptually similar to virtual machines but has much less resource overheard because it doesn't run a full guest OS. Docker containers start in seconds vs minutes, take up less space, and are less hardware demanding because they share resources with the host OS.
+<https://www.docker.com/whatisdocker>.
 
 ### Terms and Concepts
-Most of the docker descriptions are taken directly from their [glossary](https://docs.docker.com/reference/glossary/).
+Most of the docker descriptions are taken directly from their glossary.
+<https://docs.docker.com/reference/glossary/>.
 
 **Docker Engine or "Docker":** The docker daemon process running on the host which manages images and containers
 
@@ -109,7 +111,8 @@ The Docker daemon needs to be running before you can use Docker. Start it with `
 Before you move on let's explain some things. You will be setting up one host with a Postgres (SQL database) container. The other host will be setup with Nginx (web server) and uWGSI (interface to Python script that generates actual page) containers. To connect the uWGSI container across hosts to the Postgres container we will use *ambassador* containers, one on each host.  
 
 **Note**  
-You have two options to deploy the containers. You can pull already built containers from our [Docker Hub](https://hub.docker.com/u/cloudandbigdatalab/) repos and run them. Or you can pull this GitHub repo and build the Docker images yourself using the Dockerfile in each directory. If you want to edit the site content you will need to build the images yourself after making your edits, although you can edit the database by simply connecting to it. The ambassador containers we're using are maintained by a Docker employee and thus we'll only be pulling those. You can pull an image before running it with `sudo docker pull image_name` or you can  just `sudo docker run --name container_name -d image_name` and Docker will automatically pull the image for you.
+You have two options to deploy the containers. You can pull already built containers from our cloudandbigdatalab Docker Hub and run them. Or you can pull this GitHub repo and build the Docker images yourself using the Dockerfile in each directory. If you want to edit the site content you will need to build the images yourself after making your edits, although you can edit the database by simply connecting to it. The ambassador containers we're using are maintained by a Docker employee and thus we'll only be pulling those. You can pull an image before running it with `sudo docker pull image_name` or you can  just `sudo docker run --name container_name -d image_name` and Docker will automatically pull the image for you.
+<https://hub.docker.com/u/cloudandbigdatalab/>
 
 **Useful Commands**
 ```sh
@@ -230,7 +233,8 @@ Visit the public ip of your host 2 instance in your browser. If it worked congra
 # Section 2: Machine, Compose, and Swarm
 
 ## Machine
-Machine allows us to create Docker hosts and control them without interacting with the host machines directly. This way you don't have to SSH to machines running the Docker daemon to run containers. Chameleon won't work for this part of the tutorial because of problems with Chameleon's lease system. Support for Chameleon will likely happen in the future. See this [issue](https://github.com/docker/machine/issues/1461) on their GitHub. You could also use virtual machines running on a Chameleon instance but we ran into issues installing VirtualBox on the default Chameleon CentOS image. So for now we're going to demo Machine with Rackspace to give you an idea of its potential. **We will be controlling everything from a Chameleon machine however.**
+Machine allows us to create Docker hosts and control them without interacting with the host machines directly. This way you don't have to SSH to machines running the Docker daemon to run containers. Chameleon won't work for this part of the tutorial because of problems with Chameleon's lease system. Support for Chameleon will likely happen in the future. See the issue on their GitHub (linked below). You could also use virtual machines running on a Chameleon instance but we ran into issues installing VirtualBox on the default Chameleon CentOS image. So for now we're going to demo Machine with Rackspace to give you an idea of its potential. **We will be controlling everything from a Chameleon machine however.**
+<https://github.com/docker/machine/issues/1461>
 
 ## Compose
 Compose simplifies the process of arranging and linking containers together. Compose lets us specify the links and runtime configurations of containers in a single config file, rather than having several lengthy commands to execute in the right sequence. In the first tutorial we setup containers on 2 different hosts and linked them together to run a simple webpage. In this tutorial we will set up a similar page that lets you post messages and lists those previously posted. It uses 3 containers and we'll arrange them with Compose.
@@ -270,24 +274,16 @@ sudo systemctl start docker.service
 
 We also created a user group `docker` and added the default `cc` user to it before starting the Docker daemon. **After logging out and back in you will no longer have to use sudo with the Docker client or tools.**
 
-Then follow these instructions to install [Machine](https://docs.docker.com/machine/#installation) and [Compose](https://docs.docker.com/compose/install/). **If you're getting "Permission Denied" using curl, run `sudo -i` to become root, run the commands, then `exit`.**
+Install Machine and Compose following the linked instructions. **If you're getting "Permission Denied" using curl, run `sudo -i` to become root, run the commands, then `exit`.**
+<https://docs.docker.com/machine/#installation>
+<https://docs.docker.com/compose/install/>
 
 If you're going to try to use Machine with Rackspace, VM's, or another provider follow they're docs to get setup.  It's fairly easy to complete the demo with VM's on your own physical machine.
 
 ### Step 2: Compose
-With Compose you outline your container configuration and arrangement with a YAML file name docker-compose.yml. Our [docker-compose.yml](https://github.com/cloudandbigdatalab/tutorial-cham-docker-2/blob/master/docker-compose.yml) is on our GitHub. This lays out the 3 container composition. In our docker-compose.yml we specify to pull out images from Docker Hub. All the resources, including the Dockerfile, to build these images is available on our [GitHub](https://github.com/cloudandbigdatalab/tutorial-cham-docker-2). If you wanted to build the images yourself or make modifications, download the repo then change
-
-```yml
-image: cloudandbigdatalab/server:tutorial-2
-```
-
-to
-
-```yml
-build: ./server
-```
-
-to build and use a local image. We're assuming the Dockerfile for server is in the server folder within the current directory. You would do the same for the page container. Note for the db container we're using the unmodified Postgres image off Docker Hub so their isn't a folder for it. Here's a quick explanation of what's going on with our composition.
+With Compose you outline your container configuration and arrangement with a YAML file name docker-compose.yml. Our docker-compose.yml is linked below. This lays out the 3 container composition. In our docker-compose.yml we specify to pull out images from Docker Hub. All the resources, including the Dockerfile, to build these images is available on our GitHub. If you wanted to build the images yourself or make modifications, download the repo then change `image: cloudandbigdatalab/server:tutorial-2` to `build: ./server`to build and use a local image. We're assuming the Dockerfile for server is in the server folder within the current directory. You would do the same for the page container. Note for the db container we're using the unmodified Postgres image off Docker Hub so their isn't a folder for it. Here's a quick explanation of what's going on with our composition.
+<https://github.com/cloudandbigdatalab/tutorial-cham-docker-2/blob/master/docker-compose.yml>
+<https://github.com/cloudandbigdatalab/tutorial-cham-docker-2>
 
 Container Name | Apps | Description
 ----------|------|------------
@@ -378,7 +374,9 @@ For this demo we can't really use the multi-container setup we used earlier. Thi
 
 2. Even with cross-host linking, there's no automatic proxying or load balancing. So if for example we scaled the page container to 10, that's easy enough. But we'd also have to configure Nginx to load balance between those containers. Or we could have a proxy container in between the two. This is all possible but again we didn't get it working at the time of this writing. This is something you must build into your app design, there's no automatic mechanisms for this as of yet.
 
-We're still using an (extremely sparse) [docker-compose.yml](https://github.com/cloudandbigdatalab/tutorial-cham-docker-2/blob/master/swarm/docker-compose.yml) for this. It consists of one service / container that runs [folding@home](https://folding.stanford.edu). We're going to run it and scale it across a few nodes.
+We're still using an (extremely sparse) docker-compose.yml for this. It consists of one service / container that runs folding@home. We're going to run it and scale it across a few nodes.
+<https://github.com/cloudandbigdatalab/tutorial-cham-docker-2/blob/master/swarm/docker-compose.yml>
+<https://folding.stanford.edu>
 
 #### Generate Swarm Token
 We're generating the token and saving to an environment variable.
@@ -575,7 +573,8 @@ Kubernetes is a system used to control a wide number of hosts for the purpose of
 
 The setup of Kubernetes relies on a single host serving as a **Master** that will serve as the primary controller that will manage the Kubernetes installation. Any additional hosts that are to be used for application deployment are defined as a **Node** (previously described as a **Minion** in prior documentation). For the tutorial, the design will be to assign one single instance as the Master and the second as the Node.
 
-**NOTE: At the time of this writing, Kubernetes is currently in a beta state. This means that the design is constantly evolving and subject to change, possibly invalidating parts of this tutorial, though the general idea should remain the same throughout. To keep up to date with the latest on Kubernetes, please visit their current development [site](https://github.com/googlecloudplatform/kubernetes).**
+**NOTE: At the time of this writing, Kubernetes is currently in a beta state. This means that the design is constantly evolving and subject to change, possibly invalidating parts of this tutorial, though the general idea should remain the same throughout. To keep up to date with the latest on Kubernetes, please visit their current development site.
+<https://github.com/googlecloudplatform/kubernetes>
 
 For our purposes, this tutorial will begin with the installation of Kubernetes.
 
@@ -765,7 +764,8 @@ Now that we are done, we can simply destroy them.
 ```
 
 ### Step 3: Using Setup Files With Kubernetes
-In this final section, we will go about creating a series of files that can be used to define an application. For our example, we will be recreating the same tutorial released as the Docker multi-host application in the first Docker tutorial. [https://github.com/cloudandbigdatalab/tutorial-cham-docker-1](https://github.com/cloudandbigdatalab/tutorial-cham-docker-1)
+In this final section, we will go about creating a series of files that can be used to define an application. For our example, we will be recreating the same tutorial released as the Docker multi-host application in the first Docker tutorial.
+<https://github.com/cloudandbigdatalab/tutorial-cham-docker-1>
 
 First and foremost, it is very advantageous to create a directory where all the files will exist. The reason will be explained shortly. So start off with:
 
