@@ -51,7 +51,7 @@ https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.i
 ```
 
 #### One-Off Images 
-Generating a Swarm token demonstrates this workflow perfectly. Docker Swarm is explained later on but for now just know a token is something used to link nodes of swarm together. Run `docker run --rm -it swarm create` and your token is printed to stdout.
+The one-off workflow consists of running a container to produce some output or do some task with no input. For example generating part of a number series. Generating a Swarm token is a more practical example. Docker Swarm is explained later on but for now just know a token is something used to link nodes of swarm together. Run `docker run --rm -it swarm create` and your token is printed to stdout.
 
 ## CGroups and Namespaces
 Being one of the leaders in the container-based world, Docker often takes advantage of several features belonging to the Linux kernel as a means to better its service. In particular, Docker's use of control groups (cgroups) and namespaces and how each play a role in resource management and security cannot be overlooked. In order to understand what Docker provides through these features, one must first understand what they accomplish individually.
