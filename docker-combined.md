@@ -2,7 +2,7 @@
 
 This document serves as a collection of an ongoing series of tutorials authored for Docker and services surrounding Docker on the Chameleon Cloud platform. Spanning topics from basic installation to creating customized Docker applications that run across multiple hosts, these sections are designed to serve as a starting point from which users can create their own container-based applications.
 
-This series also covers Kubernetes, a solution that uses Docker containers across a wide variety of hosts to offer a resilient and reliable solution for applications. We demonstrate both Kubernetes and Docker's native solution so users can make a knowledgeable choice about which solution is best. We start with an in-depth look at some of the technologies underlying Docker that enable additional features in management and security.
+This document also covers Kubernetes, a solution that uses Docker containers across a wide variety of hosts to offer a resilient and reliable solution for applications. We demonstrate both Kubernetes and Docker's native solution so users can make a knowledgeable choice about which solution is best. We start with an in-depth look at some of the technologies underlying Docker that enable additional features in management and security.
 
 # Section 1: Docker Fundamentals
 
@@ -27,21 +27,20 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 
 **Dockerfile:** A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile. <https://docs.docker.com/reference/builder/>
 
-**Postgres:** An SQL database. <http://www.postgresql.org>
-
-**Nginx "engine x":** A web server. <http://nginx.com>
-
-**uWGSI:** An application server that connects to Nginx. In our tutorial we're using it to run a simple Python app that generates the demo page. <https://uwsgi-docs.readthedocs.org/en/latest/>
 
 ## Image Repositories / Docker Hub
 Docker provides the Docker Hub service to host and build images. Users create Docker images and push them to Hub for others to use and expand on. Hub also allows for automated builds. Automated builds link to a repo (GitHub or Bitbucket) and build an image on Hub servers using files from the repo automatically when you push to the repo.
 
 Images fulfill different needs and workflows. System images are useful to build off or provide an environment to work in. Processing type images take input files and produce processed output files. One-off images run some predetermined task and generate a result or success message. We'll look at specific examples below.
 
-### System Images
-You can use Docker to quickly launch into a particular Linux distro environment. For example to launch into a Bash shell on Ubuntu, run `docker run -it ubuntu /bin/bash` or `docker run -it -v $(pwd):/working` (if you need to save work). The `-v $(pwd):/working` argument mounts the current directory inside the container at `/working`. System images are also used as the base for other images. To do this you specify a system image in the `FROM` tag of a Dockerfile.
+**System Images**
+Docker can be used to quickly launch into a particular Linux distro environment. For example to launch into a Bash shell on Ubuntu, run 
+`docker run -it ubuntu /bin/bash` 
+or 
+`docker run -it -v $(pwd):/working` (if you need to save work). 
+The `-v $(pwd):/working` argument mounts the current directory inside the container at `/working`. System images are also used as the base for other images. To do this you specify a system image in the `FROM` tag of a Dockerfile.
 
-### Processing Images
+**Processing Images**
 A common workflow with containers is performing some operation or conversion on an input file. For example this document is written in markdown and needs to be converted to pdf. For this we have a container with Pandoc installed. The command to use it is:
 
 ```
@@ -78,6 +77,14 @@ Similar to the namespaces, cgroups manifest themselves in the virtual filesystem
 
 ## Tutorial
 In this tutorial we're going to guide you through the fundamentals of using Docker on Chameleon Cloud. You should already be familiar with managing resources on Chameleon Cloud, if not follow the "Getting Started" tutorial. At the end of this tutorial you will have setup a demo website utilizing 5 Docker containers and 2 physical hosts. See the official Docker docs for more detail and reference. <https://docs.docker.com/>
+
+The following are the tools used in this tutorial:
+**Postgres:** An SQL database. <http://www.postgresql.org>
+
+**Nginx "engine x":** A web server. <http://nginx.com>
+
+**uWGSI:** An application server that connects to Nginx. In our tutorial we're using it to run a simple Python app that generates the demo page. <https://uwsgi-docs.readthedocs.org/en/latest/>
+
 
 ### Steps Outline
 
