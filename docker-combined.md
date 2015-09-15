@@ -27,7 +27,6 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 
 **Dockerfile:** A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile. <https://docs.docker.com/reference/builder/>
 
-
 ## Image Repositories / Docker Hub
 Docker provides the Docker Hub service to host and build images. Users create Docker images and push them to Hub for others to use and expand on. Hub also allows for automated builds. Automated builds link to a repo (GitHub or Bitbucket) and build an image on Hub servers using files from the repo automatically when you push to the repo.
 
@@ -44,11 +43,13 @@ The `-v $(pwd):/working` argument mounts the current directory inside the contai
 A common workflow with containers is performing some operation or conversion on an input file. For example this document is written in markdown and needs to be converted to pdf. For this we have a container with Pandoc installed. The command to use it is:
 
 ```
-docker run --rm cloudandbigdatalab/pandoc pandoc \
--V geometry:margin=1in \ 
+sudo docker run --rm -it -v $(pwd):/working cloudandbigdatalab/pandoc \
+pandoc \
+-V geometry:margin=1in \
 --latex-engine=xelatex \
 --toc \
--o docker-combined.pdf \
+-f markdown_github \
+-o /working/docker-combined.pdf \
 https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.io/master/docker-combined.md
 ```
 
