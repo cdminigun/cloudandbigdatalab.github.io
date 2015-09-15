@@ -50,7 +50,8 @@ pandoc \
 --toc \
 -f markdown_github \
 -o /working/docker-combined.pdf \
-https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.io/master/docker-combined.md
+https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.io\
+/master/docker-combined.md
 ```
 
 **One-Off Images**  
