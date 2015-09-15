@@ -56,10 +56,10 @@ Docker provides the Docker Hub service to host and build images. Users create Do
 
 Images fulfill different needs and workflows. System images are useful to build off or provide an environment to work in. Processing-type images take input files and produce processed output files. One-off images run some predetermined task and generate a result or success message. We'll look at specific examples below.
 
-#### System Images
+**System Images**  
 Docker can be used to quickly launch into a particular Linux distro environment. For example to launch into a Bash shell on Ubuntu, run `docker run -it ubuntu /bin/bash` or `docker run -it -v $(pwd):/working` (if you need to save work). The `-v $(pwd):/working` argument mounts the current directory inside the container at `/working`. System images are also used as the base for other images. To do this you specify a system image in the `FROM` tag of a Dockerfile.
 
-#### Processing Images
+**Processing Images**  
 A common workflow with containers is performing some operation or conversion on an input file. For example this document is written in markdown and needs to be converted to pdf. For this we have a container with Pandoc installed. The command to use it is:
 
 ```
@@ -74,7 +74,7 @@ https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.i
 /master/docker-combined.md
 ```
 
-#### One-Off Images 
+**One-Off Images**
 The one-off workflow consists of running a container to produce some output or do some task with no input. For example generating part of a number series. Generating a Swarm token is a more practical example. Docker Swarm is explained later on but for now just know a token is something used to link nodes of swarm together. Run `docker run --rm -it swarm create` and your token is printed to stdout.
 
 ## Tutorial
