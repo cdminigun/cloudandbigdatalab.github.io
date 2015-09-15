@@ -53,7 +53,7 @@ pandoc \
 https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.io/master/docker-combined.md
 ```
 
-### One-Off Images
+**One-Off Images**
 Generating a Swarm token demonstrates this workflow perfectly. Docker Swarm is explained later on but for now just know a token is something used to link nodes of swarm together. Run `docker run swarm create` and your token is printed to stdout.
 
 ## CGroups and Namespaces
