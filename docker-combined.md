@@ -28,9 +28,9 @@ Most of the docker descriptions are taken directly from their [glossary](https:/
 **Dockerfile:** A Dockerfile is a text document that contains all the commands you would normally execute manually in order to build a Docker image. Docker can build images automatically by reading the instructions from a Dockerfile. <https://docs.docker.com/reference/builder/>
 
 ## Image Repositories / Docker Hub
-Docker provides the Docker Hub service to host and build images. Users create Docker images and push them to Hub for others to use and expand on. Hub also allows for automated builds. Automated builds link to a repo (GitHub or Bitbucket) and build an image on Hub servers using files from the repo automatically when you push to the repo.
+Docker provides the Docker Hub service to host and build images. Users create Docker images and push them to Hub for others to use and expand on. Hub also allows for automated builds. Automated builds link to a repo (GitHub or Bitbucket) and build an image on Hub servers using files from the repo automatically as you push.
 
-Images fulfill different needs and workflows. System images are useful to build off or provide an environment to work in. Processing type images take input files and produce processed output files. One-off images run some predetermined task and generate a result or success message. We'll look at specific examples below.
+Images fulfill different needs and workflows. System images are useful to build off or provide an environment to work in. Processing-type images take input files and produce processed output files. One-off images run some predetermined task and generate a result or success message. We'll look at specific examples below.
 
 **System Images**
 Docker can be used to quickly launch into a particular Linux distro environment. For example to launch into a Bash shell on Ubuntu, run 
@@ -43,7 +43,7 @@ The `-v $(pwd):/working` argument mounts the current directory inside the contai
 A common workflow with containers is performing some operation or conversion on an input file. For example this document is written in markdown and needs to be converted to pdf. For this we have a container with Pandoc installed. The command to use it is:
 
 ```
-sudo docker run --rm -it -v $(pwd):/working cloudandbigdatalab/pandoc \
+docker run --rm -it -v $(pwd):/working cloudandbigdatalab/pandoc \
 pandoc \
 -V geometry:margin=1in \
 --latex-engine=xelatex \
@@ -54,6 +54,7 @@ https://raw.githubusercontent.com/cloudandbigdatalab/cloudandbigdatalab.github.i
 ```
 
 ### One-Off Images
+Generating a Swarm token demonstrates this workflow perfectly. Docker Swarm is explained later on but for now just know a token is something used to link nodes of swarm together. Run `docker run swarm create` and your token is printed to stdout.
 
 ## CGroups and Namespaces
 Being one of the leaders in the container-based world, Docker often takes advantage of several features belonging to the Linux kernel as a means to better its service. In particular, Docker's use of control groups (cgroups) and namespaces and how each play a role in resource management and security cannot be overlooked. In order to understand what Docker provides through these features, one must first understand what they accomplish individually.
