@@ -30,6 +30,12 @@ In terms of how Docker uses cgroups is that Docker will place all the containers
 
 Similar to the namespaces, cgroups manifest themselves in the virtual filesystem. Depending on your installation, they are often found at `/sys/fs/cgroup/` or `/cgroup/`. From this root directory, you can see each subsystem has its own directory within which you can create cgroups within. Aside from that, you are also capable of mounting a cgroup and assigning the subsystems desired to be nested within using the `mount` command. Cgroups subscribe to a hierarchical structure in order to create nested groups of related tasks such that related processes can be stored together. This can be extended to running all tasks related to the webserver within one cgroup, internally, creating different cgroups for the database, backend, etc.
 
+## Containers
+Containers include the application and all of its dependencies, but share the kernel with other containers. They run as an isolated process in userspace on the host operating system. They’re also not tied to any specific infrastructure – Docker containers run on any computer, on any infrastructure and in any cloud <https://www.docker.com/whatisdocker>.
+
+Add image from docker website
+
+
 ## Using Docker
 Docker is conceptually similar to virtual machines but has much less resource overheard because it doesn't run a full guest OS. Docker containers start in seconds vs minutes, take up less space, and are less hardware demanding because they share resources with the host OS.
 <https://www.docker.com/whatisdocker>.
