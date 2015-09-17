@@ -34,7 +34,7 @@ Similar to the namespaces, cgroups manifest themselves in the virtual filesystem
 Containers include the application and all of its dependencies, but share the kernel with other containers. They run as an isolated process in userspace on the host operating system. They’re also not tied to any specific infrastructure – Docker containers run on any computer, on any infrastructure and in any cloud <https://www.docker.com/whatisdocker>.
 
 ![Image of container]
-(https://www.docker.com/sites/default/files/what-is-vm-diagram.png)
+(https://www.docker.com/sites/default/files/what-is-vm-diagram.png "Containers working on top of host operating system ")
 
 
 ## Using Docker
